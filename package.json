@@ -1,0 +1,45 @@
+{
+  "name": "sps-import",
+  "version": "1.0.11",
+  "description": "Import Job for SPS Commerce Orders",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --watch --content-base public/ --history-api-fallback",
+    "build": "npm version patch && webpack -p --progress --optimize-minimize"
+  },
+  "author": "Steve Montgomery",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "date-fns": "^2.14.0",
+    "numeral": "^2.0.6",
+    "path-to-regexp": "^6.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-transform-async-to-generator": "^7.10.1",
+    "@babel/plugin-transform-regenerator": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@babel/preset-react": "^7.10.1",
+    "@babel/register": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
+    "react-hot-loader": "^4.12.21",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-chunk-hash": "^0.6.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-manifest-plugin": "^2.2.0"
+  }
+}

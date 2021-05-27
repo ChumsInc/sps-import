@@ -1,0 +1,44 @@
+#app {
+
+  .col-csv-parsed {
+    max-height: calc(100vh - 105px);
+    overflow: auto;
+
+    .table.table-sticky {
+      thead {
+        tr:nth-child(1) {
+          th {
+            top: 0;
+          }
+        }
+      }
+    }
+  }
+  #drop-zone {
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+  .csv-lines--debug {
+    background-color: #eeeeee;
+    border: 1px solid #dddddd;
+    padding: 0.25rem;
+    max-height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: .75rem;
+    code {
+      font-family: "Roboto Mono", monospaced;
+      white-space: pre-wrap;
+      //color: #666;
+    }
+  }
+
+  .map-list {
+    font-size: 0.75rem;
+  }
+}
