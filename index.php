@@ -9,7 +9,7 @@ $bodyPath = "apps/sps-import";
 $title = "SPS EDI Order Import";
 
 
-$ui = new WebUI($bodyPath, $title, '', true, true);
+$ui = new WebUI($bodyPath, $title, '', true, 5);
 $ui->release = iUI::RELEASE_LIVE;
 $ui->version = '20200220';
 $ui->bodyClassName = 'container-fluid';

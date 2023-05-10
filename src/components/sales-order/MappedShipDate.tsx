@@ -5,7 +5,6 @@ import {FormColumn, InputGroup} from "chums-components";
 import classNames from "classnames";
 import {selectMaps} from "../../ducks/mapping/mapping-selectors";
 import {setCurrentMapping} from "../../ducks/mapping/mapping-actions";
-import {CurrentMappingArgs} from "../../appTypes";
 import dayjs from "dayjs";
 
 const MappedShipDate = () => {
@@ -37,10 +36,10 @@ const MappedShipDate = () => {
         <FormColumn label="Ship Date">
             <InputGroup bsSize="sm">
                 <div className="input-group-text">
-                    <span className="bi-calendar-date" />
+                    <span className="bi-calendar-date"/>
                 </div>
                 <input type="text" className="form-control form-control-sm" readOnly
-                       value={shipDate} />
+                       value={shipDate}/>
                 <button className={buttonClassName} onClick={clickHandler}>Mapping</button>
             </InputGroup>
         </FormColumn>

@@ -1,5 +1,5 @@
 import {createAction, createAsyncThunk} from "@reduxjs/toolkit";
-import {OrderMapField, SPSCustomerMap, SPSOrderLine, SPSValueMap} from "sps-integration-types";
+import {SPSCustomerMap, SPSOrderLine, SPSValueMap} from "sps-integration-types";
 import {CurrentMappingArgs, CustomerMapField, SPSCustomerLookup} from "../../appTypes";
 import {postCustomerLookupMapping, postCustomerMapping} from "../../api/mapping-api";
 import {RootState} from "../../app/configureStore";

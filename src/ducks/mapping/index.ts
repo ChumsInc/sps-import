@@ -124,7 +124,7 @@ const mappingReducer = createReducer(initialState, (builder) => {
                 delete state.customerLookup.map[action.payload.field];
             }
         })
-        .addCase(saveCustomerLookupMapping.pending, (state, action) => {
+        .addCase(saveCustomerLookupMapping.pending, (state) => {
             state.customerLookup.loading = true;
         })
         .addCase(saveCustomerLookupMapping.fulfilled, (state, action) => {
@@ -142,7 +142,7 @@ const mappingReducer = createReducer(initialState, (builder) => {
             }
 
         })
-        .addCase(saveCustomerLookupMapping.rejected, (state, action) => {
+        .addCase(saveCustomerLookupMapping.rejected, (state) => {
             state.customerLookup.loading = false;
         })
         .addCase(setCurrentMapping, (state, action) => {
@@ -157,7 +157,7 @@ const mappingReducer = createReducer(initialState, (builder) => {
             state.mapForField = null;
             state.mapForValue = '';
         })
-        .addCase(saveCustomerValueMapping.pending, (state, action) => {
+        .addCase(saveCustomerValueMapping.pending, (state) => {
             state.savingValueMap = true;
         })
         .addCase(saveCustomerValueMapping.fulfilled, (state, action) => {
@@ -166,7 +166,7 @@ const mappingReducer = createReducer(initialState, (builder) => {
                 state.maps = action.payload.sort(valueMapSorter);
             }
         })
-        .addCase(saveCustomerValueMapping.rejected, (state, action) => {
+        .addCase(saveCustomerValueMapping.rejected, (state) => {
             state.savingValueMap = false;
         })
         .addCase(closeSelectedMapping, (state) => {

@@ -11,7 +11,6 @@ import {
 import {CustomerMap, CustomerMapField} from "../../appTypes";
 import {FormCheck, FormColumn} from "chums-components";
 import {saveCustomerLookupMapping, setCustomerMap, toggleZeroCommissions} from "../../ducks/mapping/mapping-actions";
-import CloseMappingButton from "./CloseMappingButton";
 import MapChangedAlert from "./MapChangedAlert";
 
 const MapToCustomer = () => {
@@ -88,7 +87,7 @@ const MapToCustomer = () => {
                         </button>
                     </div>
                     <div className="col">
-                        <MapChangedAlert changed={customerLookupChanged} />
+                        <MapChangedAlert changed={customerLookupChanged}/>
                     </div>
                 </div>
             </FormColumn>

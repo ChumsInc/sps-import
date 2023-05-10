@@ -7,12 +7,10 @@ import {CustomerMapField} from "../../appTypes";
 import {saveCustomerValueMapping} from "../../ducks/mapping/mapping-actions";
 import {FormColumn, InputGroup} from "chums-components";
 import {mapFieldNames} from "./field-names";
-import {mappedDate} from "./utils";
 import MapList from "../MapList";
-import CloseMappingButton from "./CloseMappingButton";
 import MappingTitle from "./MappingTitle";
 
-const defaultMap:SPSValueMap = {
+const defaultMap: SPSValueMap = {
     id: 0,
     MapField: 'ShipToCode',
     CSVField: '',
@@ -42,7 +40,7 @@ const MapToValue = () => {
         setMap({...map, CSVField: mapField.field, CustomerValue: mapField.value, changed: true});
     }
 
-    const changeHandler = (ev:ChangeEvent<HTMLInputElement>) => {
+    const changeHandler = (ev: ChangeEvent<HTMLInputElement>) => {
         setMap({...map, MappedValue: ev.target.value, changed: true});
     }
 
@@ -60,7 +58,7 @@ const MapToValue = () => {
 
     return (
         <div>
-            <MappingTitle title={`Map To ${mapFieldNames[mapForField]}`} />
+            <MappingTitle title={`Map To ${mapFieldNames[mapForField]}`}/>
 
             <form onSubmit={onSubmit}>
                 <FormColumn label="Map For Field" width={8}>
@@ -76,7 +74,7 @@ const MapToValue = () => {
                 </FormColumn>
                 <FormColumn label="Map to Value">
                     <input type="text" className="form-control form-control-sm" value={map.MappedValue ?? ''}
-                           onChange={changeHandler} />
+                           onChange={changeHandler}/>
                     <small className="text-muted">Enter a valid <strong>Sage</strong> value</small>
                 </FormColumn>
                 <FormColumn label="" width={8}>

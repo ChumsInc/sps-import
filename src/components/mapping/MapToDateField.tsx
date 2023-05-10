@@ -9,7 +9,6 @@ import {FormColumn, InputGroup} from "chums-components";
 import {mapFieldNames} from "./field-names";
 import {mappedDate} from "./utils";
 import {saveCustomerValueMapping} from "../../ducks/mapping/mapping-actions";
-import CloseMappingButton from "./CloseMappingButton";
 import MappingTitle from "./MappingTitle";
 import MapChangedAlert from "./MapChangedAlert";
 
@@ -68,7 +67,7 @@ const MapToDateField = () => {
 
     return (
         <div>
-            <MappingTitle title={`Map To ${mapFieldNames[mapForField]}`} />
+            <MappingTitle title={`Map To ${mapFieldNames[mapForField]}`}/>
             <form onSubmit={onSubmit}>
                 <FormColumn label="Map For Field" width={8}>
                     <input type="text" className="form-control form-control-sm" readOnly
@@ -92,12 +91,13 @@ const MapToDateField = () => {
                 <FormColumn label="" width={8}>
                     <div className="row g-3 align-items-baseline">
                         <div className="col-auto">
-                            <button type="submit" className="btn btn-sm btn-primary" disabled={!map.changed || !map.CSVField}>
+                            <button type="submit" className="btn btn-sm btn-primary"
+                                    disabled={!map.changed || !map.CSVField}>
                                 Save
                             </button>
                         </div>
                         <div className="col">
-                            <MapChangedAlert changed={map.changed} />
+                            <MapChangedAlert changed={map.changed}/>
                         </div>
                     </div>
                 </FormColumn>

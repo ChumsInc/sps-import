@@ -12,7 +12,7 @@ export async function postFile(file: File): Promise<SPSConversionResponse> {
                 console.log(file.name, `${(ev.loaded / ev.total) * 100}%`);
             });
 
-            xhr.upload.addEventListener('loadstart', (ev) => {
+            xhr.upload.addEventListener('loadstart', () => {
                 console.log(file.name, 'loadstart');
             });
 
@@ -35,7 +35,7 @@ export async function postFile(file: File): Promise<SPSConversionResponse> {
                 console.log(file.name, 'load', ev);
             });
 
-            xhr.onreadystatechange = (ev) => {
+            xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const {SalesOrder, mapping, csvLines, customer, ItemCodes, unitsOfMeasure} = xhr.response;
                     resolve({SalesOrder, mapping, csvLines, customer, ItemCodes, unitsOfMeasure})

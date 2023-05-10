@@ -1,25 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {Alert, SortableTable, SortableTableField, TablePagination} from "chums-components";
 import {SPSCustomerMap} from "sps-integration-types";
 import {SortProps} from "chums-types";
-import {customerNo, customerSorter} from "./customer-utils";
+import {customerNo} from "./customer-utils";
 import CustomerFieldsList from "./CustomerFieldsList";
 import {selectCurrentCustomer, selectPage, selectRowsPerPage, selectSort, selectSortedList} from "./customer-selectors";
-import {
-    loadCustomerMapping,
-    loadCustomers,
-    setCurrentCustomer,
-    setPage,
-    setRowsPerPage,
-    setSort
-} from "./customer-actions";
+import {loadCustomers, setCurrentCustomer, setPage, setRowsPerPage, setSort} from "./customer-actions";
 
 const fields: SortableTableField<SPSCustomerMap>[] = [
     {field: 'id', title: 'ID', sortable: true},
     {field: 'CustomerNo', title: 'Customer', render: (row) => customerNo(row), sortable: true},
     {field: 'CustomerName', title: 'Customer Name', sortable: true},
-    {field: 'LookupFields', title: 'Lookup Fields', render: (row) => <CustomerFieldsList fields={row.LookupFields ?? []} />, sortable: true}
+    {
+        field: 'LookupFields',
+        title: 'Lookup Fields',
+        render: (row) => <CustomerFieldsList fields={row.LookupFields ?? []}/>,
+        sortable: true
+    }
 
 ]
 const CustomerList = () => {
@@ -31,7 +29,7 @@ const CustomerList = () => {
     const sortChangeHandler = (sort: SortProps) => dispatch(setSort(sort));
     const currentCustomer = useAppSelector(selectCurrentCustomer);
 
-    const rowSelectHandler = (row:SPSCustomerMap) => {
+    const rowSelectHandler = (row: SPSCustomerMap) => {
         dispatch(setCurrentCustomer(row));
     }
 

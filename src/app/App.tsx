@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import AlertList from "../ducks/alerts/AlertList";
 import ImportTabContent from "../components/ImportTabContent";
 import CurrentMappingContent from "../components/mapping/CurrentMappingContent";
@@ -23,13 +23,13 @@ const App = () => {
     const dispatch = useAppDispatch();
     const tab = useAppSelector(selectCurrentTab);
     const tabs = useAppSelector(selectTabs);
-    const setTab = (tab:Tab) => dispatch(setCurrentTab(tab.id));
+    const setTab = (tab: Tab) => dispatch(setCurrentTab(tab.id));
 
     useEffect(() => {
         dispatch(setTabs(appTabs));
         dispatch(setCurrentTab('customer'))
         dispatch(loadCustomers());
-        
+
     }, [])
 
     return (

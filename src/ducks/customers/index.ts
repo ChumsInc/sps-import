@@ -1,12 +1,14 @@
-import {SPSCustomerMap, SPSValueMap, SPSCustomerKey} from "sps-integration-types";
+import {SPSCustomerMap, SPSValueMap} from "sps-integration-types";
 import {createReducer} from "@reduxjs/toolkit";
 import {customerSorter} from "./customer-utils";
 import {SortProps} from "chums-types";
 import {
     loadCustomerMapping,
     loadCustomers,
-    setCurrentCustomer, setCustomerMapType,
-    setCustomerPage, setCustomerRowsPerPage,
+    setCurrentCustomer,
+    setCustomerMapType,
+    setCustomerPage,
+    setCustomerRowsPerPage,
     setCustomerSort,
     setPage,
     setRowsPerPage,
@@ -17,7 +19,7 @@ import {CustomerMapType} from "../../appTypes";
 export interface CustomersState {
     list: SPSCustomerMap[];
     current: {
-        customer: SPSCustomerMap|null;
+        customer: SPSCustomerMap | null;
         mapping: SPSValueMap[];
         loading: boolean;
         page: number;
@@ -32,7 +34,7 @@ export interface CustomersState {
 }
 
 const defaultSort: SortProps<SPSCustomerMap> = {field: 'id', ascending: true};
-const defaultMappingSort:SortProps<SPSValueMap> = {field: 'id', ascending: true};
+const defaultMappingSort: SortProps<SPSValueMap> = {field: 'id', ascending: true};
 
 const initialState: CustomersState = {
     list: [],

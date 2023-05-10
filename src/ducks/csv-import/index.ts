@@ -4,7 +4,6 @@ import {createReducer} from "@reduxjs/toolkit";
 import {csvLineSorter, mappingSorter} from "./utils";
 import {importToSage, loadExistingPurchaseOrder, parseFile} from "./csv-import-actions";
 import {saveCustomerLookupMapping, saveCustomerValueMapping} from "../mapping/mapping-actions";
-import {SageImportResponse} from "chums-types";
 
 export interface CSVImportState {
     filename: string;
@@ -79,13 +78,13 @@ const csvImportReducer = createReducer(initialState, (builder) => {
             state.importResult = action.payload;
             state.importing = false;
         })
-        .addCase(importToSage.rejected, (state, action) => {
+        .addCase(importToSage.rejected, (state) => {
             state.importing = false;
         })
-        .addCase(saveCustomerLookupMapping.fulfilled, (state, action) => {
+        .addCase(saveCustomerLookupMapping.fulfilled, (state) => {
             state.validationRequired = true;
         })
-        .addCase(saveCustomerValueMapping.fulfilled, (state, action) => {
+        .addCase(saveCustomerValueMapping.fulfilled, (state) => {
             state.validationRequired = true;
         })
 

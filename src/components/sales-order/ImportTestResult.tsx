@@ -39,7 +39,7 @@ const ImportTestResult = () => {
 
     const hasFatalErrors = detail
         .filter(line => !!line.errors.length)
-        .filter(line => /^\*/.test(line.ItemCode ?? '') === false)
+        .filter(line => !/^\*/.test(line.ItemCode ?? ''))
         .length > 0;
 
     const onImportToSage = () => {

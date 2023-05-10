@@ -12,7 +12,7 @@ export const setRowsPerPage = createAction<number>('customers/setRowsPerPage');
 
 export const loadCustomers = createAsyncThunk<SPSCustomerMap[]>(
     'customers/load',
-    async (arg) => {
+    async () => {
         return await fetchCustomers();
     },
     {

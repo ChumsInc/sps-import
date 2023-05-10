@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useId, useRef, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../app/configureStore";
-import {selectCustomerId, selectCustomerLookup, selectCustomerOptions} from "../ducks/mapping/mapping-selectors";
+import {selectCustomerId, selectCustomerLookup} from "../ducks/mapping/mapping-selectors";
 import {customerNo} from "../ducks/customers/customer-utils";
 import {SPSCustomerLookup} from "../appTypes";
 import {fetchSearchCustomer} from "../api/mapping-api";
@@ -13,7 +13,6 @@ const CustomerLookup = () => {
     const dispatch = useAppDispatch();
     const customer = useAppSelector(selectCustomerLookup);
     const customerId = useAppSelector(selectCustomerId);
-    const customerOptions = useAppSelector(selectCustomerOptions);
     const [value, setValue] = useState(customerNo(customer) ?? '');
     const [customers, setCustomers] = useState<SPSCustomerLookup[]>([])
     const [loading, setLoading] = useState(false);

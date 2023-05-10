@@ -14,9 +14,27 @@
           <mappings>
             <mapping deploy="/intranet.chums.com/apps/sps-import" local="$PROJECT_DIR$" web="/apps/sps-import" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/node_modules" />
+            <excludedPath local="true" path="$PROJECT_DIR$/src" />
+          </excludedPaths>
         </serverdata>
       </paths>
-      <paths name="oraibi.chums.com">
+      <paths name="MUKUNTUWEAP">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="gutenprog">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="www.progulus.com">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

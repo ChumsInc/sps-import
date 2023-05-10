@@ -1,6 +1,6 @@
 import {fetchExistingPurchaseOrder, postFile, postImportToSage} from "../../api/csv-import-api";
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {selectExistingPOLoading, selectImporting, selectProcessing, selectSalesOrder} from "./csv-import-selectors";
+import {selectExistingPOLoading, selectImporting, selectProcessing} from "./csv-import-selectors";
 import {SPSConversionResponse, SPSSalesOrder} from "sps-integration-types";
 import {RootState} from "../../app/configureStore";
 import {ExistingPurchaseOrder, SalesOrderImportResponse} from "../../appTypes";
@@ -8,7 +8,7 @@ import {ExistingPurchaseOrder, SalesOrderImportResponse} from "../../appTypes";
 
 export const parseFile = createAsyncThunk<SPSConversionResponse, File>(
     'csvImport/parseFile',
-    async (arg, {dispatch, getState}) => {
+    async (arg) => {
         return await postFile(arg);
     },
     {
@@ -18,7 +18,7 @@ export const parseFile = createAsyncThunk<SPSConversionResponse, File>(
         }
     }
 )
-export const loadExistingPurchaseOrder = createAsyncThunk<ExistingPurchaseOrder | null, SPSSalesOrder|null>(
+export const loadExistingPurchaseOrder = createAsyncThunk<ExistingPurchaseOrder | null, SPSSalesOrder | null>(
     'csvImport/loadExistingPurchaseOrder',
     async (arg) => {
         return await fetchExistingPurchaseOrder(arg!);

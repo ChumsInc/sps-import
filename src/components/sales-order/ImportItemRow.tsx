@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {SPSSalesOrderDetailLine} from "sps-integration-types";
 import {useAppDispatch} from "../../app/configureStore";
 import classNames from "classnames";
