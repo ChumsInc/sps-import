@@ -1,14 +1,17 @@
-#app .col-csv-parsed {
-  max-height: calc(100vh - 105px);
-  overflow: auto; }
-  #app .col-csv-parsed .table.table-sticky thead tr:nth-child(1) th {
-    top: 0; }
+#app .csv-parsed {
+  min-height: 75vh;
+}
+#app .csv-parsed .table.table-sticky thead tr:nth-child(1) th {
+  top: 0;
+}
 #app #drop-zone {
   height: 3rem;
   text-align: center;
-  line-height: 3rem; }
+  line-height: 3rem;
+}
 #app h3 {
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+}
 #app .csv-lines--debug {
   background-color: #eeeeee;
   border: 1px solid #dddddd;
@@ -16,11 +19,14 @@
   max-height: 75vh;
   overflow-y: auto;
   overflow-x: hidden;
-  font-size: .75rem; }
-  #app .csv-lines--debug code {
-    font-family: "Roboto Mono", monospaced;
-    white-space: pre-wrap; }
+  font-size: 0.75rem;
+}
+#app .csv-lines--debug code {
+  font-family: "Roboto Mono", monospaced;
+  white-space: pre-wrap;
+}
 #app .map-list {
-  font-size: 0.75rem; }
+  font-size: 0.75rem;
+}
 
 /*# sourceMappingURL=styles.css.map */

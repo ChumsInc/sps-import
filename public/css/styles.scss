@@ -1,8 +1,9 @@
 #app {
 
-  .col-csv-parsed {
-    max-height: calc(100vh - 105px);
-    overflow: auto;
+  .csv-parsed {
+    //max-height: calc(100vh - 105px);
+    min-height: 75vh;
+    //overflow: auto;
 
     .table.table-sticky {
       thead {
@@ -14,6 +15,7 @@
       }
     }
   }
+
   #drop-zone {
     height: 3rem;
     text-align: center;
@@ -23,6 +25,7 @@
   h3 {
     font-size: 1.5rem;
   }
+
   .csv-lines--debug {
     background-color: #eeeeee;
     border: 1px solid #dddddd;
@@ -31,6 +34,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     font-size: .75rem;
+
     code {
       font-family: "Roboto Mono", monospaced;
       white-space: pre-wrap;
