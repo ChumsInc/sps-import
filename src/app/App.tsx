@@ -10,6 +10,7 @@ import {useAppDispatch, useAppSelector} from "./configureStore";
 import {loadCustomers} from "../ducks/customers/customer-actions";
 import CustomerValueList from "../ducks/customers/CustomerValueList";
 import {selectCurrentTab, selectTabs, setCurrentTab, setTabs} from "../ducks/app";
+import VersionInfo from "../ducks/version/VersionInfo";
 
 const appTabs: Tab[] = [
     {id: 'customer', title: 'Current Map'},
@@ -46,6 +47,7 @@ const App = () => {
                     {tab === 'so' && (<SalesOrderView/>)}
                     {tab === 'customer_maps' && (<CustomerValueList/>)}
                     {tab === 'customer_list' && <CustomerList/>}
+                    <VersionInfo />
                 </div>
             </div>
         </div>

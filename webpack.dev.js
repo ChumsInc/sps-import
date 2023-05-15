@@ -19,6 +19,9 @@ module.exports = merge(common, {
             directory: path.join(__dirname, 'node_modules'),
             publicPath: '/node_modules',
             watch: false,
+        }, {
+            directory: process.cwd(),
+            watch: false,
         }],
         hot: true,
         proxy: {

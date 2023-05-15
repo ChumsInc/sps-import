@@ -46,6 +46,7 @@ const csvImportReducer = createReducer(initialState, (builder) => {
         })
         .addCase(parseFile.fulfilled, (state, action) => {
             state.processing = false;
+            state.validationRequired = false;
             if (action.payload) {
                 if (state.existingPO && state.salesOrder && (
                     state.salesOrder.ARDivisionNo !== action.payload.SalesOrder?.ARDivisionNo

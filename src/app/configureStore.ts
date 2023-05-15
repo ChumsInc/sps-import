@@ -6,6 +6,7 @@ import mappingReducer from '../ducks/mapping';
 import customersReducer from "../ducks/customers";
 import alertsReducer from "../ducks/alerts";
 import appReducer from "../ducks/app";
+import versionReducer from "../ducks/version";
 
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     customers: customersReducer,
     csvImport: csvImportReducer,
     mapping: mappingReducer,
+    version: versionReducer,
 });
 
 const store = configureStore({

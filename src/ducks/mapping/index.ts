@@ -2,7 +2,7 @@ import {CustomerMap, SPSCustomerLookup} from "../../appTypes";
 import {Editable} from "chums-types";
 import {OrderMapField, SPSCustomerMapField, SPSCustomerOptions, SPSOrderLine, SPSValueMap} from "sps-integration-types";
 import {createReducer} from "@reduxjs/toolkit";
-import {parseFile} from "../csv-import/csv-import-actions";
+import {importToSage, parseFile} from "../csv-import/csv-import-actions";
 import {
     closeSelectedMapping,
     saveCustomerLookupMapping,
@@ -27,7 +27,7 @@ export interface MappingState {
     savingCustomerMap: boolean;
     mappingData: SPSOrderLine | null;
     maps: SPSValueMap[];
-    selectedMappingTool: OrderMapField | 'Customer' | null;
+    selectedMappingTool: OrderMapField | 'Customer' | 'Import' | null;
     mapForField: OrderMapField | null;
     mapForValue: string;
     selectedMap: SPSValueMap & Editable | null;
@@ -146,9 +146,13 @@ const mappingReducer = createReducer(initialState, (builder) => {
             state.customerLookup.loading = false;
         })
         .addCase(setCurrentMapping, (state, action) => {
-            state.mappingData = action.payload.line;
+            state.mappingData = action.payload.line ?? null;
             state.selectedMappingTool = action.payload.mapField;
-            state.mapForField = action.payload.mapField === 'Customer' ? null : action.payload.mapField;
+            if (action.payload.mapField === 'Customer' || action.payload.mapField === 'Import') {
+                state.mapForField = null
+            } else {
+                state.mapForField = action.payload.mapField ?? null;
+            }
             state.mapForValue = action.payload.mapToValue ?? '';
         })
         .addCase(setShowCustomerMap, (state, action) => {
@@ -171,6 +175,11 @@ const mappingReducer = createReducer(initialState, (builder) => {
         })
         .addCase(closeSelectedMapping, (state) => {
             state.selectedMappingTool = null;
+            state.mapForField = null;
+            state.mapForValue = '';
+        })
+        .addCase(importToSage.fulfilled, (state, action) => {
+            state.selectedMappingTool = 'Import';
             state.mapForField = null;
             state.mapForValue = '';
         });

@@ -1,10 +1,9 @@
 import {EmptyObject} from "redux";
-import {SPSCustomerMapField} from "sps-integration-types";
-import {OrderMapField, SPSCustomerKey, SPSOrderLine} from "sps-integration-types";
+import {OrderMapField, SPSCustomerKey, SPSCustomerMapField, SPSOrderLine} from "sps-integration-types";
 
 export interface OrderMap {
-    field: OrderMapField|null;
-    value: string|null;
+    field: OrderMapField | null;
+    value: string | null;
 }
 
 export interface CustomerSearchResult {
@@ -24,14 +23,15 @@ export interface ExistingPurchaseOrder {
     OrderDate: string;
     OrderStatus: string;
 }
+
 export interface ExistingPurchaseOrderResponse {
-    SalesOrder: ExistingPurchaseOrder|EmptyObject;
+    SalesOrder: ExistingPurchaseOrder | EmptyObject;
 }
 
-export interface SPSCustomerLookup extends SPSCustomerKey{
+export interface SPSCustomerLookup extends SPSCustomerKey {
     Company: string;
-    ARDivisionNo:string;
-    CustomerNo:string;
+    ARDivisionNo: string;
+    CustomerNo: string;
     CustomerName: string;
 }
 
@@ -40,22 +40,22 @@ export interface CustomerLookupResponse {
 }
 
 export interface CustomerMap {
-    [key:string]: string;
+    [key: string]: string;
 }
 
 export interface Loadable {
     loading?: boolean;
 }
 
-export type CustomerMapType = 'ShipToCode'|'ItemCode'|'other';
+export type CustomerMapType = 'ShipToCode' | 'ItemCode' | 'other';
 
 export interface CustomerMapField extends SPSCustomerMapField {
     checked: boolean;
 }
 
 export interface CurrentMappingArgs {
-    line: SPSOrderLine;
-    mapField: OrderMapField | 'Customer';
+    line?: SPSOrderLine;
+    mapField: OrderMapField | 'Customer' | 'Import';
     mapToValue?: string;
 }
 

@@ -17,6 +17,7 @@ const ImportTabContent = () => {
                 {selectedMappingTool === 'Customer' && (<LinkAccount/>)}
                 {selectedMappingTool === 'ShipExpireDate' && (<MapToDateField/>)}
                 {selectedMappingTool === 'CancelDate' && (<MapToDateField/>)}
+                {selectedMappingTool === 'Import' && <ImportResult />}
 
                 {selectedMappingTool === 'ShipToCode' && (<MapToValue/>)}
                 {selectedMappingTool === 'ShipVia' && (<MapToValue/>)}
