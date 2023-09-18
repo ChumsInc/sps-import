@@ -4,7 +4,7 @@ import {FormCheck, SortableTable, SortableTableField, TablePagination} from "chu
 import {SPSValueMap} from "sps-integration-types";
 import {SortProps} from "chums-types";
 import {
-    selectCurrentCustomer,
+    selectCurrentCustomer, selectCustomerMappingFilter,
     selectCustomerMappingList,
     selectCustomerMappingSort,
     selectCustomerMapType,
@@ -12,7 +12,7 @@ import {
     selectCustomerRowsPerPage
 } from "./customer-selectors";
 import {
-    loadCustomerMapping,
+    loadCustomerMapping, setCustomerMappingFilter,
     setCustomerMapType,
     setCustomerPage,
     setCustomerRowsPerPage,
@@ -60,6 +60,7 @@ const CustomerValueList = () => {
     const page = useAppSelector(selectCustomerPage);
     const rowsPerPage = useAppSelector(selectCustomerRowsPerPage);
     const mapType = useAppSelector(selectCustomerMapType);
+    const search = useAppSelector(selectCustomerMappingFilter);
 
     const sortChangeHandler = (sort: SortProps) => dispatch(setCustomerSort(sort));
 
@@ -85,6 +86,13 @@ const CustomerValueList = () => {
                 <div className="col-auto">
                     <FormCheck type="radio" label="Other" checked={mapType === 'other'}
                                onChange={() => dispatch(setCustomerMapType('other'))}/>
+                </div>
+            </div>
+            <div className="row g-3">
+                <div className="col-auto">Search</div>
+                <div className="col-auto">
+                    <input type="search" value={search} onChange={(ev) => dispatch(setCustomerMappingFilter(ev.target.value))}
+                           className="form-control form-control-sm" />
                 </div>
             </div>
             <SortableTable currentSort={sort} onChangeSort={sortChangeHandler} fields={fields}

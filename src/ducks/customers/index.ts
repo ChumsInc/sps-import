@@ -5,7 +5,7 @@ import {SortProps} from "chums-types";
 import {
     loadCustomerMapping,
     loadCustomers,
-    setCurrentCustomer,
+    setCurrentCustomer, setCustomerMappingFilter,
     setCustomerMapType,
     setCustomerPage,
     setCustomerRowsPerPage,
@@ -15,6 +15,8 @@ import {
     setSort
 } from "./customer-actions";
 import {CustomerMapType} from "../../appTypes";
+import {parseFile} from "../csv-import/csv-import-actions";
+import {valueMapSorter} from "../mapping/utils";
 
 export interface CustomersState {
     list: SPSCustomerMap[];
@@ -26,6 +28,7 @@ export interface CustomersState {
         rowsPerPage: number;
         sort: SortProps<SPSValueMap>;
         mapType: CustomerMapType;
+        mappingFilter: string;
     }
     loading: boolean;
     sort: SortProps<SPSCustomerMap>;
@@ -45,7 +48,8 @@ const initialState: CustomersState = {
         page: 0,
         rowsPerPage: 10,
         sort: defaultMappingSort,
-        mapType: 'other'
+        mapType: 'other',
+        mappingFilter: '',
     },
     loading: false,
     sort: {field: 'CustomerName', ascending: true},
@@ -110,6 +114,12 @@ const customersReducer = createReducer(initialState, (builder) => {
         .addCase(setCustomerMapType, (state, action) => {
             state.current.mapType = action.payload;
             state.current.page = 0;
+        })
+        .addCase(parseFile.fulfilled, (state, action) => {
+            state.current.mapping = [...action.payload.mapping].sort(valueMapSorter)
+        })
+        .addCase(setCustomerMappingFilter, (state, action) => {
+            state.current.mappingFilter = action.payload;
         })
     ;
 });

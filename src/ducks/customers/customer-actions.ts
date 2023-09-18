@@ -29,6 +29,7 @@ export const setCustomerSort = createAction<SortProps<SPSValueMap>>('customers/c
 export const setCustomerPage = createAction<number>('customers/current/setPage');
 export const setCustomerRowsPerPage = createAction<number>('customers/current/setRowsPerPage');
 export const setCustomerMapType = createAction<CustomerMapType>('customers/current/setMapType');
+export const setCustomerMappingFilter = createAction<string>('customers/current/setMappingFilter');
 
 export const loadCustomerMapping = createAsyncThunk<SPSValueMap[], SPSCustomerMap>(
     'customers/loadItems',

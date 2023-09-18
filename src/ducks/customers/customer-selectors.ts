@@ -22,18 +22,27 @@ export const selectCustomerPage = (state:RootState) => state.customers.current.p
 export const selectCustomerRowsPerPage = (state:RootState) => state.customers.current.rowsPerPage;
 export const selectCustomerMappingSort = (state:RootState) => state.customers.current.sort;
 export const selectCustomerMapType = (state:RootState) => state.customers.current.mapType;
+export const selectCustomerMappingFilter = (state:RootState) => state.customers.current.mappingFilter;
+
 export const selectCustomerMappingList = createSelector(
-    [selectCustomerMapping, selectCustomerMappingSort, selectCustomerMapType],
-    (list, sort, mapType) => {
+    [selectCustomerMapping, selectCustomerMappingSort, selectCustomerMappingFilter, selectCustomerMapType],
+    (list, sort, filter, mapType) => {
         return [...list]
             .filter(row => {
                 switch (mapType) {
                     case 'ItemCode':
+                        return row.MapField === mapType;
                     case 'ShipToCode':
                         return row.MapField === mapType;
                     default:
                         return row.MapField !== 'ItemCode' && row.MapField !== 'ShipToCode';
                 }
+            })
+            .filter(row => {
+                if (!filter) {
+                    return true;
+                }
+                return row.CustomerValue.includes(filter) || row.MappedValue?.includes(filter);
             })
             .sort(customerMappingSorter(sort));
     }
