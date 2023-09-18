@@ -32,6 +32,10 @@ export const selectCurrentMap = createSelector(
                 [map] = maps.filter(m => m.MapField === 'ShipVia')
                     .filter(m => m.MappedValue === mapForValue);
                 return map ?? null;
+            case 'ShipToCode':
+                [map] = maps.filter(m => m.MapField === 'ShipToCode')
+                    .filter(m => m.MappedValue === mapForValue);
+                return map ?? null;
             case 'ItemCode':
                 [map] = maps.filter(m => m.MapField === 'ItemCode')
                     .filter(m => m.MappedValue === mapForValue);
