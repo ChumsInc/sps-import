@@ -55,6 +55,9 @@ const MapToItemCode = () => {
 
     const submitHandler = (ev: FormEvent) => {
         ev.preventDefault();
+        if (map.MappedOptions && !map.MappedOptions.conversionFactor) {
+            map.MappedOptions.conversionFactor = 1;
+        }
         if (!!map.CustomerValue && !!map.MappedValue) {
             dispatch(saveCustomerValueMapping(map));
         }
