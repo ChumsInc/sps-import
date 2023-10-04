@@ -11,6 +11,8 @@ import {loadCustomers} from "../ducks/customers/customer-actions";
 import CustomerValueList from "../ducks/customers/CustomerValueList";
 import {selectCurrentTab, selectTabs, setCurrentTab, setTabs} from "../ducks/app";
 import VersionInfo from "../ducks/version/VersionInfo";
+import {ErrorBoundary} from "react-error-boundary";
+import ErrorBoundaryFallbackAlert from "../components/ErrorBoundaryFallbackAlert";
 
 const appTabs: Tab[] = [
     {id: 'customer', title: 'Current Map'},
@@ -34,7 +36,7 @@ const App = () => {
     }, [])
 
     return (
-        <div>
+        <ErrorBoundary FallbackComponent={ErrorBoundaryFallbackAlert}>
             <AlertList/>
             <div className="row g-3">
                 <div className="col-6">
@@ -50,7 +52,7 @@ const App = () => {
                     <VersionInfo />
                 </div>
             </div>
-        </div>
+        </ErrorBoundary>
     )
 }
 

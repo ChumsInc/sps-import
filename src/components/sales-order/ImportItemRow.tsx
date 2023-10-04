@@ -53,7 +53,7 @@ const ImportItemRow = ({line, hasPackForStore}: {
                 <td className="right">{QuantityOrdered}</td>
                 <td className="right">{UnitOfMeasure}</td>
                 <td className="right">{numeral(UnitPrice).format('0.00')}</td>
-                <td className="right">{numeral(Number(QuantityOrdered) * Number(UnitPrice)).format('0,0.00')}</td>
+                <td className="right">{numeral(Number(QuantityOrdered ?? 0) * Number(UnitPrice ?? 0)).format('0,0.00')}</td>
                 {hasPackForStore && (<td>{UDF_SHIP_CODE}</td>)}
                 <td className="center">
                     <button className={classNames("btn btn-sm btn", btnClassName)} onClick={clickHandler}>Map</button>
