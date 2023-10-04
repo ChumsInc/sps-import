@@ -1,6 +1,6 @@
 {
   "name": "sps-import",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Import Job for SPS Commerce Orders",
   "main": "index.js",
   "scripts": {
