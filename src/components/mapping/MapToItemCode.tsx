@@ -45,7 +45,7 @@ const MapToItemCode = () => {
 
     const setConversionFactor = (ev: ChangeEvent<HTMLInputElement>) => {
         const options = map.MappedOptions ?? {};
-        setMap({...map, MappedOptions: {...options, conversionFactor: ev.target.valueAsNumber}, changed: true});
+        setMap({...map, MappedOptions: {...options, conversionFactor: ev.target.valueAsNumber ?? 1}, changed: true});
     }
 
     const setUOMOverride = (ev: ChangeEvent<HTMLInputElement>) => {
