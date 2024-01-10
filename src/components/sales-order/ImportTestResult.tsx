@@ -10,13 +10,14 @@ import MappedCancelDate from "./MappedCancelDate";
 import MappedOrderValue from "./MappedOrderValue";
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {
-    selectExistingPO,
+    selectExistingPO, selectImporting,
     selectSalesOrder,
     selectValidationRequired
 } from "../../ducks/csv-import/csv-import-selectors";
 import classNames from "classnames";
 import MapChangedAlert from "../mapping/MapChangedAlert";
 import {importToSage} from "../../ducks/csv-import/csv-import-actions";
+import LoadingProgress from "chums-components/dist/LoadingProgressBar";
 
 
 const ImportTestResult = () => {
@@ -24,6 +25,7 @@ const ImportTestResult = () => {
     const salesOrder = useAppSelector(selectSalesOrder);
     const existingPO = useAppSelector(selectExistingPO);
     const validationRequired = useAppSelector(selectValidationRequired);
+    const importing = useAppSelector(selectImporting);
 
     if (!salesOrder) {
         return null;
@@ -89,11 +91,12 @@ const ImportTestResult = () => {
             )}
             <div className="d-grid mt-1 gap-2">
                 <button type="button" className={importButtonClassname}
-                        disabled={hasFatalErrors || detail.length === 0 || validationRequired}
+                        disabled={hasFatalErrors || detail.length === 0 || validationRequired || importing}
                         onClick={onImportToSage}>
                     Import Order
                 </button>
             </div>
+            {importing && <LoadingProgress animated striped />}
         </div>
     );
 }
