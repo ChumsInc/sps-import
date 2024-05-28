@@ -1,6 +1,5 @@
 import {ExistingPurchaseOrder} from "./appTypes";
-import {EmptyObject} from "redux";
 
-export const isExistingPO = (salesOrder:ExistingPurchaseOrder|EmptyObject):salesOrder is ExistingPurchaseOrder => {
-    return (salesOrder as ExistingPurchaseOrder).CustomerPONo !== undefined;
+export const isExistingPO = (salesOrder:ExistingPurchaseOrder|null):salesOrder is ExistingPurchaseOrder => {
+    return (salesOrder as ExistingPurchaseOrder)?.CustomerPONo !== undefined;
 }

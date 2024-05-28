@@ -47,8 +47,8 @@ const alertsReducer = createReducer(initialAlertsState, (builder) => {
                 state.nextId += 1;
             }
         })
-        .addMatcher((action) => isRejected(action) && !!action.error,
-            (state, action) => {
+        .addDefaultCase((state, action) => {
+            if (isRejected(action) && !!action.error) {
                 const context = action.type.replace('/rejected', '');
                 const [contextAlert] = state.list.filter(alert => alert.context === context)
                 if (contextAlert) {
@@ -66,7 +66,8 @@ const alertsReducer = createReducer(initialAlertsState, (builder) => {
                     });
                     state.nextId += 1;
                 }
-            })
+            }
+        })
 });
 
 export default alertsReducer;

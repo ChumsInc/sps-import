@@ -1,5 +1,5 @@
-import {EmptyObject} from "redux";
 import {OrderMapField, SPSCustomerKey, SPSCustomerMapField, SPSOrderLine} from "sps-integration-types";
+
 
 export interface OrderMap {
     field: OrderMapField | null;
@@ -25,7 +25,7 @@ export interface ExistingPurchaseOrder {
 }
 
 export interface ExistingPurchaseOrderResponse {
-    SalesOrder: ExistingPurchaseOrder | EmptyObject;
+    SalesOrder: ExistingPurchaseOrder | null;
 }
 
 export interface SPSCustomerLookup extends SPSCustomerKey {
