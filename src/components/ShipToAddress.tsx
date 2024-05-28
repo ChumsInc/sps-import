@@ -8,8 +8,7 @@ const ShipToAddress = ({address}:{address?: SPSCustomerShipToAddress|null}) => {
             <Alert color="warning">Missing Ship-To Address</Alert>
         )
     }
-    const {ShipToCode,
-        ShipToName,
+    const {ShipToName,
         ShipToAddress1,
         ShipToAddress2,
         ShipToAddress3,

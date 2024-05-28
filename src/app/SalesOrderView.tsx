@@ -12,6 +12,7 @@ const SalesOrderView = () => {
 
     (salesOrder.detail || []).forEach(line => {
         const {csv, map, ...rest} = line;
+        // discard csv, map
         return {...rest};
     });
     return (

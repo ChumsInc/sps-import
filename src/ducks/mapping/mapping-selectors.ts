@@ -7,15 +7,12 @@ export const selectCustomerId = (state:RootState) => state.mapping.customerId;
 export const selectCustomerLookup = (state:RootState) => state.mapping.customerLookup.customer;
 export const selectCustomerLookupMap = (state:RootState) => state.mapping.customerLookup.map;
 export const selectCustomerLookupChanged = (state:RootState) => state.mapping.customerLookup.changed;
-export const selectCustomerLookupLoading = (state:RootState) => state.mapping.customerLookup.loading;
 export const selectCustomerOptions = (state:RootState) => state.mapping.customerLookup.options;
 export const selectMaps = (state:RootState) => state.mapping.maps;
 export const selectMappingData = (state:RootState) => state.mapping.mappingData;
 export const selectCurrentMappingTool = (state:RootState) => state.mapping.selectedMappingTool;
 export const selectMapForField = (state:RootState) => state.mapping.mapForField;
 export const selectMapForValue = (state:RootState) => state.mapping.mapForValue;
-// export const selectCurrentMap = (state:RootState) => state.mapping.selectedMap;
-export const selectDefaultCSVField = (state:RootState) => state.mapping.defaultCSVField;
 
 export const selectCurrentMap = createSelector(
     [selectMaps, selectMapForField, selectMapForValue],

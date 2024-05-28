@@ -2,7 +2,6 @@ import {RootState} from "../../app/configureStore";
 
 export const selectProcessing = (state:RootState) => state.csvImport.processing;
 export const selectSalesOrder = (state:RootState) => state.csvImport.salesOrder;
-export const selectMapping = (state:RootState) => state.csvImport.mapping;
 export const selectCSVLines = (state:RootState) => state.csvImport.csvLines;
 export const selectCSVHeader = (state:RootState) => {
     const [header] = state.csvImport.csvLines.filter(line => line['Record Type'] === 'H');

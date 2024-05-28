@@ -14,7 +14,7 @@ const ImportResult = () => {
     return (
         <div>
             {!!SalesOrderNo && (
-                <Alert color="success" title="Yay!">Imported as '{SalesOrderNo}'</Alert>
+                <Alert color="success" title="Yay!">Imported as &quot;{SalesOrderNo}&quot;</Alert>
             )}
             {success === false && (
                 <Alert color="danger" title="Error:">{error}</Alert>
@@ -25,6 +25,9 @@ const ImportResult = () => {
                         {JSON.stringify(response, undefined, 2)}
                     </code>
                 </pre>
+            )}
+            {!!exception && (
+                <pre>{exception}</pre>
             )}
         </div>
     );

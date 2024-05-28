@@ -1,20 +1,11 @@
 import {OrderMapField, SPSCustomerKey, SPSCustomerMapField, SPSOrderLine} from "sps-integration-types";
 
 
-export interface OrderMap {
-    field: OrderMapField | null;
-    value: string | null;
-}
-
 export interface CustomerSearchResult {
     Company: string;
     ARDivisionNo: string;
     CustomerNo: string;
     CustomerName: string;
-}
-
-export interface CustomerSearchResponse {
-    result: CustomerSearchResult[];
 }
 
 export interface ExistingPurchaseOrder {
@@ -41,10 +32,6 @@ export interface CustomerLookupResponse {
 
 export interface CustomerMap {
     [key: string]: string;
-}
-
-export interface Loadable {
-    loading?: boolean;
 }
 
 export type CustomerMapType = 'ShipToCode' | 'ItemCode' | 'other';

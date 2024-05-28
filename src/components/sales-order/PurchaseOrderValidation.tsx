@@ -41,7 +41,7 @@ const PurchaseOrderValidation = () => {
             )}
             {!loading && !!existingPO && (
                 <div className="text-danger">
-                    This PO has already been imported as SO# '{existingPO.SalesOrderNo}'.
+                    This PO has already been imported as SO# &apos;{existingPO.SalesOrderNo}&apos;.
                 </div>
             )}
         </FormColumn>

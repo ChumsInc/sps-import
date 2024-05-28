@@ -45,8 +45,8 @@ const CSVDropTarget = () => {
 
     const onFilesSelected = () => {
 
-        if (fileInputRef?.current?.files && fileInputRef.current.files.length) {
-            const [file] = fileInputRef.current?.files;
+        if (fileInputRef?.current?.files && fileInputRef?.current?.files.length) {
+            const [file] = fileInputRef.current.files;
             setFile(file);
             dispatch(parseFile(file));
         }

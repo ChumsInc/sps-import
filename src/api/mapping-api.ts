@@ -20,24 +20,6 @@ export async function fetchSearchCustomer(value:string, signal: AbortSignal|null
         return Promise.reject(new Error('Error in fetchSearchCustomer()'));
     }
 }
-export async function fetchLookupCustomer({ARDivisionNo, CustomerNo}: SPSCustomerKey): Promise<SPSCustomerKey | null> {
-    try {
-        const url: string = '/api/search/customers/chums/:ARDivisionNo-:CustomerNo'
-            .replace(':ARDivisionNo', encodeURIComponent(ARDivisionNo))
-            .replace(':CustomerNo', encodeURIComponent(CustomerNo));
-        const res = await fetchJSON<CustomerLookupResponse>(url, {cache: 'no-cache'});
-        const [customer] = res?.result ?? [];
-        return customer ?? null;
-    } catch (err: unknown) {
-        if (err instanceof Error) {
-            console.debug("fetchLookupCustomer()", err.message);
-            return Promise.reject(err);
-        }
-        console.debug("fetchLookupCustomer()", err);
-        return Promise.reject(new Error('Error in fetchLookupCustomer()'));
-    }
-}
-
 
 export async function postCustomerLookupMapping(customer: SPSCustomerKey, map: CustomerMap, options: SPSCustomerOptions): Promise<SPSCustomerMap[]> {
     try {

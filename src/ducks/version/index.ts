@@ -42,7 +42,7 @@ const versionReducer = createReducer(initialState, (builder) => {
             }
             state.version = action.payload;
         })
-        .addCase(loadVersion.rejected, (state, action) => {
+        .addCase(loadVersion.rejected, (state) => {
             state.loading = false;
         })
 });

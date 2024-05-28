@@ -4,7 +4,7 @@ import MapToDateField from "./MapToDateField";
 import MapToValue from "./MapToValue";
 import ImportResult from "../ImportResult";
 import MapToItemCode from "./MapToItemCode";
-import {useAppDispatch, useAppSelector} from "../../app/configureStore";
+import {useAppSelector} from "../../app/configureStore";
 import {selectCurrentMappingTool} from "../../ducks/mapping/mapping-selectors";
 import {Alert} from "chums-components";
 
@@ -17,7 +17,7 @@ const ImportTabContent = () => {
                 {selectedMappingTool === 'Customer' && (<LinkAccount/>)}
                 {selectedMappingTool === 'ShipExpireDate' && (<MapToDateField/>)}
                 {selectedMappingTool === 'CancelDate' && (<MapToDateField/>)}
-                {selectedMappingTool === 'Import' && <ImportResult />}
+                {selectedMappingTool === 'Import' && <ImportResult/>}
 
                 {selectedMappingTool === 'ShipToCode' && (<MapToValue/>)}
                 {selectedMappingTool === 'ShipVia' && (<MapToValue/>)}

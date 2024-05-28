@@ -178,7 +178,7 @@ const mappingReducer = createReducer(initialState, (builder) => {
             state.mapForField = null;
             state.mapForValue = '';
         })
-        .addCase(importToSage.fulfilled, (state, action) => {
+        .addCase(importToSage.fulfilled, (state) => {
             state.selectedMappingTool = 'Import';
             state.mapForField = null;
             state.mapForValue = '';

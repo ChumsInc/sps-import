@@ -31,7 +31,7 @@ const MappedCancelDate = () => {
         }));
     }
 
-    const cancelDate = !!salesOrder.CancelDate
+    const cancelDate = salesOrder.CancelDate
         ? dayjs(salesOrder.CancelDate).format('ddd MM/DD/YYYY')
         : '';
 
