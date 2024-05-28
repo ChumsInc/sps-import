@@ -87,7 +87,7 @@ const MapToItemCode = () => {
                 <FormColumn label="Conversion">
                     <InputGroup bsSize="sm">
                         <div className="input-group-text">Conversion Factor</div>
-                        <input type="number" value={map.MappedOptions?.conversionFactor ?? 1}
+                        <input type="number" value={map.MappedOptions?.conversionFactor ?? ''} required
                                min={1} onChange={setConversionFactor} className="form-control form-control-sm"/>
                         <div className="input-group-text">U/M</div>
                         <input type="text" value={map.MappedOptions?.UOMOverride ?? ''}
