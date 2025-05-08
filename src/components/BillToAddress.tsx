@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from "chums-components";
+import {Alert} from "react-bootstrap";
 import {SPSCustomerBillingAddress} from 'sps-integration-types'
 
 const BillToAddress = ({address}: { address?: SPSCustomerBillingAddress|null }) => {
@@ -21,7 +21,7 @@ const BillToAddress = ({address}: { address?: SPSCustomerBillingAddress|null }) 
     const AddressLines = [AddressLine1, AddressLine2, AddressLine3];
     if (!CustomerName || !AddressLine1) {
         return (
-            <Alert color="warning">Missing Billing Address</Alert>
+            <Alert variant="warning">Missing Billing Address</Alert>
         )
     }
     return (

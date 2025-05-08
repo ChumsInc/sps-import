@@ -1,6 +1,6 @@
 import {SPSConversionResponse, SPSSalesOrder} from "sps-integration-types";
 import {ExistingPurchaseOrder, ExistingPurchaseOrderResponse, SalesOrderImportResponse} from "../appTypes";
-import {fetchJSON} from "chums-components";
+import {fetchJSON} from "@chumsinc/ui-utils";
 import {isExistingPO} from "../typeUtils";
 
 export async function postFile(file: File): Promise<SPSConversionResponse> {
@@ -71,12 +71,12 @@ export async function fetchExistingPurchaseOrder({ARDivisionNo, CustomerNo, Cust
             .replace(':ARDivisionNo', encodeURIComponent(ARDivisionNo))
             .replace(':CustomerNo', encodeURIComponent(CustomerNo))
             .replace(':CustomerPONo', encodeURIComponent(CustomerPONo));
-        const {SalesOrder} = await fetchJSON<ExistingPurchaseOrderResponse>(url, {
+        const res = await fetchJSON<ExistingPurchaseOrderResponse>(url, {
             credentials: "same-origin",
             cache: 'no-cache'
         });
-        if (isExistingPO(SalesOrder)) {
-            return SalesOrder;
+        if (isExistingPO(res?.SalesOrder ?? null)) {
+            return res?.SalesOrder ?? null;
         }
         return null;
     } catch (err: unknown) {
@@ -89,7 +89,7 @@ export async function fetchExistingPurchaseOrder({ARDivisionNo, CustomerNo, Cust
     }
 }
 
-export async function postImportToSage(salesOrder: SPSSalesOrder): Promise<SalesOrderImportResponse> {
+export async function postImportToSage(salesOrder: SPSSalesOrder): Promise<SalesOrderImportResponse|null> {
     try {
         const url = '/sage/api/sps-import.php';
         return await fetchJSON<SalesOrderImportResponse>(url, {method: 'POST', body: JSON.stringify(salesOrder)});

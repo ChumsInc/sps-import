@@ -5,10 +5,11 @@ import {SPSValueMap} from "sps-integration-types";
 import {Editable} from "chums-types";
 import {CustomerMapField} from "../../appTypes";
 import {saveCustomerValueMapping} from "../../ducks/mapping/mapping-actions";
-import {FormColumn, InputGroup} from "chums-components";
+import {FormColumn} from "chums-components";
 import {mapFieldNames} from "./field-names";
 import MapList from "../MapList";
 import MappingTitle from "./MappingTitle";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const defaultMap: SPSValueMap = {
     id: 0,
@@ -66,10 +67,10 @@ const MapToValue = () => {
                            value={mapFieldNames[mapForField]}/>
                 </FormColumn>
                 <FormColumn label="Map To Field" width={8}>
-                    <InputGroup bsSize="sm">
+                    <InputGroup size="sm">
                         <input type="text" className="form-control form-control-sm" readOnly value={map.CSVField}/>
-                        <div className="input-group-text">EDI Value</div>
-                        <div className="input-group-text">{map.CustomerValue}</div>
+                        <InputGroup.Text>EDI Value</InputGroup.Text>
+                        <InputGroup.Text>{map.CustomerValue}</InputGroup.Text>
                     </InputGroup>
                 </FormColumn>
                 <FormColumn label="Map to Value">

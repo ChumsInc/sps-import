@@ -42,6 +42,7 @@ export interface CustomerMapField extends SPSCustomerMapField {
 
 export interface CurrentMappingArgs {
     line?: SPSOrderLine;
+    customerValue?: string;
     mapField: OrderMapField | 'Customer' | 'Import';
     mapToValue?: string;
 }

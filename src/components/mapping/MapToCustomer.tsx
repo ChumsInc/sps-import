@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useId, useState} from 'react';
 import MapList from "../MapList";
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {
@@ -9,9 +9,10 @@ import {
     selectMappingData
 } from "../../ducks/mapping/mapping-selectors";
 import {CustomerMap, CustomerMapField} from "../../appTypes";
-import {FormCheck, FormColumn} from "chums-components";
+import {FormColumn} from "chums-components";
 import {saveCustomerLookupMapping, setCustomerMap, toggleZeroCommissions} from "../../ducks/mapping/mapping-actions";
 import MapChangedAlert from "./MapChangedAlert";
+import {FormCheck} from "react-bootstrap";
 
 const MapToCustomer = () => {
     const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const MapToCustomer = () => {
     const customerLookupChanged = useAppSelector(selectCustomerLookupChanged);
     const [showMappingOptions, setShowMappingOptions] = useState(Object.keys(customerLookupMapping).length === 0 || customerLookupChanged);
     const customerOptions = useAppSelector(selectCustomerOptions);
+    const idZeroCommissions = useId();
 
     useEffect(() => {
         setShowMappingOptions(showMappingOptions || !Object.keys(customerLookupMapping).length || customerLookupChanged);
@@ -66,6 +68,7 @@ const MapToCustomer = () => {
             </table>
             <FormColumn width={9} label="Import with 0 Commission">
                 <FormCheck label={customerOptions.zeroCommissions ? 'Yes' : 'No'}
+                           id={idZeroCommissions}
                            onChange={(ev) => dispatch(toggleZeroCommissions(ev.target.checked))}
                            type="checkbox" inline={true}
                            checked={customerOptions.zeroCommissions ?? false}/>

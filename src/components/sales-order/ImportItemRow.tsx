@@ -3,7 +3,7 @@ import {SPSSalesOrderDetailLine} from "sps-integration-types";
 import {useAppDispatch} from "../../app/configureStore";
 import classNames from "classnames";
 import numeral from "numeral";
-import {Alert} from "chums-components";
+import {Alert} from "react-bootstrap";
 import {setCurrentMapping} from "../../ducks/mapping/mapping-actions";
 
 const nonInventoryItem = /^\*/;
@@ -35,11 +35,13 @@ const ImportItemRow = ({line, hasPackForStore}: {
     };
 
     const clickHandler = () => {
-        if (!csv) {
+        if (!line || !line.csv) {
             return;
         }
+        const {csv, map} = line;
         dispatch(setCurrentMapping({
             line: csv,
+            customerValue: map?.CustomerValue ?? '',
             mapField: 'ItemCode',
             mapToValue: map?.MappedValue ?? '',
         }));
@@ -62,7 +64,9 @@ const ImportItemRow = ({line, hasPackForStore}: {
             {!nonInventoryItem.test(ItemCode ?? '') && errors.length > 0 && (
                 <tr>
                     <td colSpan={hasPackForStore ? 8 : 7}>
-                        <Alert message={errors.join('; ')} color="danger"/>
+                        <Alert variant="danger">
+                            {errors.join('; ')}
+                        </Alert>
                     </td>
                 </tr>
             )}

@@ -35,7 +35,7 @@ export const selectCurrentMap = createSelector(
                 return map ?? null;
             case 'ItemCode':
                 [map] = maps.filter(m => m.MapField === 'ItemCode')
-                    .filter(m => m.MappedValue === mapForValue);
+                    .filter(m => m.CustomerValue === mapForValue);
                 return map ?? null;
             default:
                 return null;

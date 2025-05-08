@@ -1,6 +1,6 @@
 import React from 'react';
 import numeral from 'numeral';
-import {Alert} from "chums-components";
+import {Alert} from "react-bootstrap";
 import {useAppSelector} from "../../app/configureStore";
 import {selectCSVHeader, selectSalesOrder} from "../../ducks/csv-import/csv-import-selectors";
 import Decimal from "decimal.js";
@@ -48,7 +48,9 @@ const ImportItemList = () => {
                         <th>PO Total Amount</th>
                         <th colSpan={4}>
                             {new Decimal(POTotalAmount).sub(total).abs().gt(0.01) && (
-                                <Alert message={`Total does not match: ${numeral(total).format('0,0.00')}`}/>)}
+                                <Alert variant="warning">
+                                    Total does not match: ${numeral(total).format('0,0.00')}
+                                </Alert>)}
                         </th>
                         <th className="right">{numeral(POTotalAmount).format('0,0.00')}</th>
                         <th>&nbsp;</th>

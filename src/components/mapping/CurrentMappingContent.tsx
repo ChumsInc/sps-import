@@ -6,7 +6,7 @@ import ImportResult from "../ImportResult";
 import MapToItemCode from "./MapToItemCode";
 import {useAppSelector} from "../../app/configureStore";
 import {selectCurrentMappingTool} from "../../ducks/mapping/mapping-selectors";
-import {Alert} from "chums-components";
+import {Alert} from "react-bootstrap";
 
 const ImportTabContent = () => {
     const selectedMappingTool = useAppSelector(selectCurrentMappingTool);
@@ -22,7 +22,7 @@ const ImportTabContent = () => {
                 {selectedMappingTool === 'ShipToCode' && (<MapToValue/>)}
                 {selectedMappingTool === 'ShipVia' && (<MapToValue/>)}
                 {selectedMappingTool === 'ItemCode' && (<MapToItemCode/>)}
-                {!selectedMappingTool && (<Alert color="info">Select a mapping button</Alert>)}
+                {!selectedMappingTool && (<Alert variant="info">Select a mapping button</Alert>)}
             </div>
         </div>
     );

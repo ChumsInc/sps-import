@@ -153,7 +153,7 @@ const mappingReducer = createReducer(initialState, (builder) => {
             } else {
                 state.mapForField = action.payload.mapField ?? null;
             }
-            state.mapForValue = action.payload.mapToValue ?? '';
+            state.mapForValue = action.payload.customerValue ?? '';
         })
         .addCase(setShowCustomerMap, (state, action) => {
             state.mappingData = action.payload;

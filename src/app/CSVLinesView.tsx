@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import {FormCheck} from "chums-components";
+import React, {useId, useState} from 'react';
+import {FormCheck} from "react-bootstrap";
 import {useAppSelector} from "./configureStore";
 import {JSONView} from "@chumsinc/json-view";
-import {selectCSVLines} from "../ducks/csv-import/csv-import-selectors";
+import {selectCSVLines} from "@/ducks/csv-import/csv-import-selectors";
 
 const CSVLinesView = () => {
     const [showEmpty, setShowEmpty] = useState(false);
     const csvLines = useAppSelector(selectCSVLines);
+    const id = useId();
 
     let data = [...csvLines];
     if (!showEmpty) {
@@ -22,10 +23,10 @@ const CSVLinesView = () => {
     }
     return (
         <div>
-            <FormCheck type="checkbox" label="Show Empty Values" inline checked={showEmpty}
+            <FormCheck type="checkbox" checked={showEmpty} id={id}
+                       label="Show Empty Values" inline
                        onClick={() => setShowEmpty(!showEmpty)}/>
             <JSONView data={data} defaultOpenLevels={1}/>
-
         </div>
     );
 }

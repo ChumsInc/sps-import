@@ -1,38 +1,25 @@
-import React, {useEffect} from 'react';
-import AlertList from "../ducks/alerts/AlertList";
+import React, {useEffect, useState} from 'react';
 import ImportTabContent from "../components/ImportTabContent";
 import CurrentMappingContent from "../components/mapping/CurrentMappingContent";
-import {Tab, TabList} from "chums-components";
 import CSVLinesView from "./CSVLinesView";
 import SalesOrderView from "./SalesOrderView";
 import CustomerList from "../ducks/customers/CustomerList";
-import {useAppDispatch, useAppSelector} from "./configureStore";
-import {loadCustomers} from "../ducks/customers/customer-actions";
+import {useAppDispatch} from "./configureStore";
+import {loadCustomers} from "@/ducks/customers/customer-actions";
 import CustomerValueList from "../ducks/customers/CustomerValueList";
-import {selectCurrentTab, selectTabs, setCurrentTab, setTabs} from "../ducks/app";
 import VersionInfo from "../ducks/version/VersionInfo";
 import {ErrorBoundary} from "react-error-boundary";
 import ErrorBoundaryFallbackAlert from "../components/ErrorBoundaryFallbackAlert";
+import AppNav from "../components/AppNav";
+import AlertList from "@/components/alerts/AlertList";
 
-const appTabs: Tab[] = [
-    {id: 'customer', title: 'Current Map'},
-    {id: 'csv', title: 'Show CSV'},
-    {id: 'so', title: 'Sales Order Values'},
-    {id: 'customer_list', title: 'Customer List'},
-    {id: 'customer_maps', title: 'Customer Mapping'},
-]
 
 const App = () => {
     const dispatch = useAppDispatch();
-    const tab = useAppSelector(selectCurrentTab);
-    const tabs = useAppSelector(selectTabs);
-    const setTab = (tab: Tab) => dispatch(setCurrentTab(tab.id));
+    const [tab, setTab] = useState<string>('customer');
 
     useEffect(() => {
-        dispatch(setTabs(appTabs));
-        dispatch(setCurrentTab('customer'))
         dispatch(loadCustomers());
-
     }, [])
 
     return (
@@ -43,13 +30,13 @@ const App = () => {
                     <ImportTabContent/>
                 </div>
                 <div className="col-6">
-                    <TabList tabs={tabs} onSelectTab={setTab} currentTabId={tab}/>
+                    <AppNav activeKey={tab} onSelect={(tab) => setTab(tab ?? 'customer')}/>
                     {tab === 'customer' && <CurrentMappingContent/>}
                     {tab === 'csv' && (<CSVLinesView/>)}
                     {tab === 'so' && (<SalesOrderView/>)}
                     {tab === 'customer_maps' && (<CustomerValueList/>)}
                     {tab === 'customer_list' && <CustomerList/>}
-                    <VersionInfo />
+                    <VersionInfo/>
                 </div>
             </div>
         </ErrorBoundary>

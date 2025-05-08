@@ -2,7 +2,7 @@ import {fetchExistingPurchaseOrder, postFile, postImportToSage} from "../../api/
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {selectExistingPOLoading, selectImporting, selectProcessing} from "./csv-import-selectors";
 import {SPSConversionResponse, SPSSalesOrder} from "sps-integration-types";
-import {RootState} from "../../app/configureStore";
+import {RootState} from "@/app/configureStore";
 import {ExistingPurchaseOrder, SalesOrderImportResponse} from "../../appTypes";
 
 
@@ -31,7 +31,7 @@ export const loadExistingPurchaseOrder = createAsyncThunk<ExistingPurchaseOrder 
     }
 )
 
-export const importToSage = createAsyncThunk<SalesOrderImportResponse, SPSSalesOrder>(
+export const importToSage = createAsyncThunk<SalesOrderImportResponse|null, SPSSalesOrder>(
     'csvImport/importToSage',
     async (arg) => {
         return await postImportToSage(arg);

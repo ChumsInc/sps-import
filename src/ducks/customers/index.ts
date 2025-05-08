@@ -4,7 +4,7 @@ import {customerSorter} from "./customer-utils";
 import {SortProps} from "chums-types";
 import {
     loadCustomerMapping,
-    loadCustomers,
+    loadCustomers, removeCustomerItemMapping,
     setCurrentCustomer, setCustomerMappingFilter,
     setCustomerMapType,
     setCustomerPage,
@@ -120,6 +120,17 @@ const customersReducer = createReducer(initialState, (builder) => {
         })
         .addCase(setCustomerMappingFilter, (state, action) => {
             state.current.mappingFilter = action.payload;
+        })
+        .addCase(removeCustomerItemMapping.pending, (state) => {
+            state.current.loading = true;
+        })
+        .addCase(removeCustomerItemMapping.fulfilled, (state, action) => {
+            state.current.loading = false;
+            state.current.mapping = [...action.payload].sort(valueMapSorter)
+            state.current.page = 0;
+        })
+        .addCase(removeCustomerItemMapping.rejected, (state) => {
+            state.current.loading = false;
         })
     ;
 });

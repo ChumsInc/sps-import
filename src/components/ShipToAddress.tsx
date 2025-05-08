@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from "chums-components";
+import {Alert} from "react-bootstrap";
 import {SPSCustomerShipToAddress} from "sps-integration-types";
 
 const ShipToAddress = ({address}:{address?: SPSCustomerShipToAddress|null}) => {
@@ -19,7 +19,7 @@ const ShipToAddress = ({address}:{address?: SPSCustomerShipToAddress|null}) => {
     const AddressLines = [ShipToAddress1, ShipToAddress2, ShipToAddress3];
     if (!ShipToName || !ShipToAddress1) {
         return (
-            <Alert color="warning">Missing Ship-To Address</Alert>
+            <Alert variant="warning">Missing Ship-To Address</Alert>
         )
     }
     return (

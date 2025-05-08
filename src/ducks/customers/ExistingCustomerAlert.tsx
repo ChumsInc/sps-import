@@ -1,9 +1,9 @@
 import React from 'react';
 import {SPSCustomerKey} from "sps-integration-types";
-import {useAppSelector} from "../../app/configureStore";
+import {useAppSelector} from "@/app/configureStore";
 import {selectCustomerList} from "./customer-selectors";
 import {isSameCustomer} from "./customer-utils";
-import {Alert} from "chums-components";
+import {Alert} from "react-bootstrap";
 
 const ExistingCustomerAlert = ({newCustomer}: { newCustomer: SPSCustomerKey }) => {
     const list = useAppSelector(selectCustomerList);
@@ -12,7 +12,7 @@ const ExistingCustomerAlert = ({newCustomer}: { newCustomer: SPSCustomerKey }) =
         return null
     }
     return (
-        <Alert color="danger">
+        <Alert variant="danger">
             <span className="bi-exclamation-triangle-fill me-3"/>
             Warning: this customer is already configured. Saving this map will override the existing mapping.
         </Alert>

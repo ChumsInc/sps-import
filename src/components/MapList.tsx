@@ -1,9 +1,10 @@
 import React, {Fragment, useState} from 'react';
 import AccountMapItem from "./AccountMapItem";
-import {useAppSelector} from "../app/configureStore";
-import {selectMappingData} from "../ducks/mapping/mapping-selectors";
-import {FormCheck, FormColumn} from "chums-components";
+import {useAppSelector} from "@/app/configureStore";
+import {selectMappingData} from "@/ducks/mapping/mapping-selectors";
+import {FormCheck} from "react-bootstrap";
 import {CustomerMapField} from "../appTypes";
+import {FormColumn} from "chums-components";
 
 export interface MapListProps {
     csvFields: string[];

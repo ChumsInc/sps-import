@@ -1,12 +1,12 @@
 import {SPSCustomerMap, SPSValueMap, SPSCustomerKey} from "sps-integration-types";
-import {fetchJSON} from "chums-components";
+import {fetchJSON} from "@chumsinc/ui-utils";
 
 
 export async function fetchCustomers():Promise<SPSCustomerMap[]>{
     try {
         const url = `/api/partners/sps/customers/`;
-        const {customers} = await fetchJSON<{customers: SPSCustomerMap[]}>(url, {cache: 'no-cache'});
-        return customers ?? [];
+        const res = await fetchJSON<{customers: SPSCustomerMap[]}>(url, {cache: 'no-cache'});
+        return res?.customers ?? [];
     } catch(err:unknown) {
         if (err instanceof Error) {
             console.debug("loadCustomers()", err.message);

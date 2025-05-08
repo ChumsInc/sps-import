@@ -1,9 +1,9 @@
-import {fetchJSON} from "chums-components";
+import {fetchJSON} from "@chumsinc/ui-utils";
 
 export async function fetchVersion():Promise<string|null> {
     try {
-        const {version} = await fetchJSON<{version: string}>('package.json');
-        return version ?? null;
+        const res = await fetchJSON<{version: string}>('package.json');
+        return res?.version ?? null;
     } catch(err:unknown) {
         if (err instanceof Error) {
             console.debug("()", err.message);

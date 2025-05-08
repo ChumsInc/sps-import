@@ -4,13 +4,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import csvImportReducer from '../ducks/csv-import';
 import mappingReducer from '../ducks/mapping';
 import customersReducer from "../ducks/customers";
-import alertsReducer from "../ducks/alerts";
 import appReducer from "../ducks/app";
 import versionReducer from "../ducks/version";
+import {alertsSlice} from "@chumsinc/alert-list";
 
 
 const rootReducer = combineReducers({
-    alerts: alertsReducer,
+    [alertsSlice.reducerPath]: alertsSlice.reducer,
     app: appReducer,
     customers: customersReducer,
     csvImport: csvImportReducer,

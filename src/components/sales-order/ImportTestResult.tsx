@@ -2,22 +2,22 @@ import React from 'react';
 import BillToAddress from "../BillToAddress";
 import ShipToAddress from "../ShipToAddress";
 import ImportItemList from "./ImportItemList";
-import {Alert} from "chums-components";
 import PurchaseOrderValidation from "./PurchaseOrderValidation";
 import MappedCustomerInfo from "./MappedCustomerInfo";
 import MappedShipDate from "./MappedShipDate";
 import MappedCancelDate from "./MappedCancelDate";
 import MappedOrderValue from "./MappedOrderValue";
-import {useAppDispatch, useAppSelector} from "../../app/configureStore";
+import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {
     selectExistingPO, selectImporting,
     selectSalesOrder,
     selectValidationRequired
-} from "../../ducks/csv-import/csv-import-selectors";
+} from "@/ducks/csv-import/csv-import-selectors";
 import classNames from "classnames";
 import MapChangedAlert from "../mapping/MapChangedAlert";
-import {importToSage} from "../../ducks/csv-import/csv-import-actions";
-import LoadingProgress from "chums-components/dist/LoadingProgressBar";
+import {importToSage} from "@/ducks/csv-import/csv-import-actions";
+import {Alert, ProgressBar} from "react-bootstrap";
+
 
 
 const ImportTestResult = () => {
@@ -85,7 +85,7 @@ const ImportTestResult = () => {
                 {(comments || []).map((comment, index) => (<li key={index}>{comment}</li>))}
             </ul>
             {hasFatalErrors && (
-                <Alert color="danger" title="Danger:">
+                <Alert variant="danger" title="Danger:">
                     This import has non-recoverable mapping errors.
                 </Alert>
             )}
@@ -96,7 +96,7 @@ const ImportTestResult = () => {
                     Import Order
                 </button>
             </div>
-            {importing && <LoadingProgress animated striped />}
+            {importing && <ProgressBar animated striped now={100} label="Importing..."/>}
         </div>
     );
 }

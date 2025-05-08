@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {loadVersion, selectVersion} from "./index";
-import {Alert} from "chums-components";
+import {Alert} from "react-bootstrap";
 
 const VersionInfo = () => {
     const dispatch = useAppDispatch();
@@ -12,7 +12,7 @@ const VersionInfo = () => {
     }, []);
 
     return (
-        <Alert color="light">Version: {version}</Alert>
+        <Alert variant="secondary">Version: {version}</Alert>
     )
 }
 

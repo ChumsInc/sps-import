@@ -4,9 +4,10 @@ import {selectCSVHeader, selectSalesOrder} from "../../ducks/csv-import/csv-impo
 import {selectMaps} from "../../ducks/mapping/mapping-selectors";
 import {OrderMapField} from "sps-integration-types";
 import classNames from "classnames";
-import {FormColumn, InputGroup} from "chums-components";
+import {FormColumn} from "chums-components";
 import {mapFieldNames} from "../mapping/field-names";
 import {setCurrentMapping} from "../../ducks/mapping/mapping-actions";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const MappedOrderValue = ({mapField, required, icon}:{
     mapField:OrderMapField,
@@ -42,13 +43,13 @@ const MappedOrderValue = ({mapField, required, icon}:{
 
     return (
         <FormColumn label={mapFieldNames[mapField]}>
-            <InputGroup bsSize="sm">
+            <InputGroup size="sm">
                 {!!icon && (
-                    <div className="input-group-text">
+                    <InputGroup.Text>
                         <span className={icon} />
-                    </div>
+                    </InputGroup.Text>
                 )}
-                <div className="input-group-text">{valueMap?.CustomerValue ?? ''}</div>
+                <InputGroup.Text>{valueMap?.CustomerValue ?? ''}</InputGroup.Text>
                 <input type="text" className="form-control form-control-sm" readOnly
                        value={valueMap?.MappedValue ?? ''} />
                 <button className={buttonClassName} onClick={clickHandler}>Mapping</button>

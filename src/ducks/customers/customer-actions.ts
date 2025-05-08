@@ -3,8 +3,9 @@ import {SortProps} from "chums-types";
 import {SPSCustomerMap, SPSValueMap} from "sps-integration-types";
 import {fetchCustomerMapping, fetchCustomers} from "../../api/customers-api";
 import {RootState} from "../../app/configureStore";
-import {selectCustomerLoading, selectCustomersLoading} from "./customer-selectors";
+import {selectCurrentCustomer, selectCustomerLoading, selectCustomersLoading} from "./customer-selectors";
 import {CustomerMapType} from "../../appTypes";
+import {deleteCustomerItemMapping} from "@/api/mapping-api";
 
 export const setSort = createAction<SortProps<SPSCustomerMap>>('customers/setSort');
 export const setPage = createAction<number>('customers/setPage');
@@ -39,6 +40,25 @@ export const loadCustomerMapping = createAsyncThunk<SPSValueMap[], SPSCustomerMa
     {
         condition: (arg, {getState}) => {
             const state = getState() as RootState;
+            return !selectCustomerLoading(state);
+        }
+    }
+)
+
+export const removeCustomerItemMapping = createAsyncThunk<SPSValueMap[], SPSValueMap, {state:RootState}>(
+    'customers/removeItem',
+    async (arg, {getState}) => {
+        const state = getState();
+        const customer = selectCurrentCustomer(state);
+        return await deleteCustomerItemMapping(customer!, arg);
+    },
+    {
+        condition: (arg, {getState}) => {
+            const state = getState();
+            const customer = selectCurrentCustomer(state);
+            if (!arg.id || !customer) {
+                return false;
+            }
             return !selectCustomerLoading(state);
         }
     }

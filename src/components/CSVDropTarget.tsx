@@ -1,10 +1,10 @@
 import React, {DragEvent, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {parseFile} from '../ducks/csv-import/csv-import-actions';
+import {parseFile} from '@/ducks/csv-import/csv-import-actions';
 import classNames from 'classnames';
-import {selectProcessing} from "../ducks/csv-import/csv-import-selectors";
-import {useAppDispatch} from "../app/configureStore";
-import {LoadingProgressBar} from "chums-components";
+import {selectProcessing} from "@/ducks/csv-import/csv-import-selectors";
+import {useAppDispatch} from "@/app/configureStore";
+import {ProgressBar} from "react-bootstrap";
 
 const CSVDropTarget = () => {
     const dispatch = useAppDispatch();
@@ -105,7 +105,7 @@ const CSVDropTarget = () => {
 
                 </div>
             </div>
-            {processing && <LoadingProgressBar striped animated/>}
+            {processing && <ProgressBar striped animated now={100} label="Processing..."/>}
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import {fetchJSON} from "chums-components";
+import {fetchJSON} from "@chumsinc/ui-utils";
 import {CustomerLookupResponse, CustomerMap, SPSCustomerLookup} from "../appTypes";
 import {SPSCustomerMap, SPSCustomerOptions, SPSValueMap, SPSCustomerKey} from "sps-integration-types";
 
@@ -10,7 +10,7 @@ export async function fetchSearchCustomer(value:string, signal: AbortSignal|null
         const url = `/api/search/customer/chums/:value`
             .replace(':value', encodeURIComponent(value));
         const res = await fetchJSON<CustomerLookupResponse>(url, {cache: 'no-cache', signal});
-        return res.result ?? [];
+        return res?.result ?? [];
     } catch(err:unknown) {
         if (err instanceof Error) {
             console.debug("fetchSearchCustomer()", err.message);
@@ -55,5 +55,24 @@ export async function postCustomerMapping(customer:SPSCustomerKey, map:SPSValueM
         }
         console.debug("postCustomerMapping()", err);
         return Promise.reject(new Error('Error in postCustomerMapping()'));
+    }
+}
+
+
+export async function deleteCustomerItemMapping(customer:SPSCustomerKey, value:SPSValueMap):Promise<SPSValueMap[]> {
+    try {
+        const url = '/api/partners/sps/mapping/item/:ARDivisionNo-:CustomerNo/:id.json'
+            .replace(':ARDivisionNo', encodeURIComponent(customer.ARDivisionNo))
+            .replace(':CustomerNo', encodeURIComponent(customer.CustomerNo))
+            .replace(':id', encodeURIComponent(value.id));
+        const res = await fetchJSON<{mapping: SPSValueMap[]}>(url, {method: "DELETE"});
+        return res?.mapping ?? [];
+    } catch(err:unknown) {
+        if (err instanceof Error) {
+            console.debug("deleteCustomerMapping()", err.message);
+            return Promise.reject(err);
+        }
+        console.debug("deleteCustomerMapping()", err);
+        return Promise.reject(new Error('Error in deleteCustomerMapping()'));
     }
 }

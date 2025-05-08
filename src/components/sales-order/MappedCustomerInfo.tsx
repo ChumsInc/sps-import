@@ -1,10 +1,11 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {selectCSVHeader, selectSalesOrder} from "../../ducks/csv-import/csv-import-selectors";
-import {FormColumn, InputGroup} from "chums-components";
+import {FormColumn} from "chums-components";
 import {customerNo} from "../../ducks/customers/customer-utils";
 import classNames from "classnames";
 import {setCurrentMapping} from "../../ducks/mapping/mapping-actions";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const MappedCustomerInfo = () => {
     const dispatch = useAppDispatch();
@@ -26,11 +27,11 @@ const MappedCustomerInfo = () => {
 
     return (
         <FormColumn label="Customer">
-            <InputGroup bsSize="sm">
-                <div className="input-group-text">
+            <InputGroup size="sm">
+                <InputGroup.Text>
                     <span className="bi-building"/>
-                </div>
-                <div className="input-group-text">{salesOrder.BillToAddress?.CustomerName}</div>
+                </InputGroup.Text>
+                <InputGroup.Text>{salesOrder.BillToAddress?.CustomerName}</InputGroup.Text>
                 <input type="text" className="form-control form-control-sm" readOnly
                        value={customerNo(salesOrder) ?? ''}/>
                 <button className={buttonClassName} onClick={clickHandler}>Mapping</button>

@@ -5,10 +5,12 @@ import {selectCurrentMap, selectMapForValue} from "../../ducks/mapping/mapping-s
 import {Editable} from "chums-types";
 import {CustomerMapField} from "../../appTypes";
 import MappingTitle from "./MappingTitle";
-import {FormColumn, InputGroup} from "chums-components";
+import {FormColumn} from "chums-components";
 import MapList from "../MapList";
 import MapChangedAlert from "./MapChangedAlert";
 import {saveCustomerValueMapping} from "../../ducks/mapping/mapping-actions";
+import InputGroup from "react-bootstrap/InputGroup";
+import {FormText} from "react-bootstrap";
 
 const defaultMap: SPSValueMap = {
     id: 0,
@@ -68,38 +70,39 @@ const MapToItemCode = () => {
             <MappingTitle title="Map to Item Code"/>
             <form onSubmit={submitHandler}>
                 <FormColumn label="Map From" width={8}>
-                    <InputGroup bsSize="sm">
+                    <InputGroup size="sm">
                         <div className="input-group-text">{map.CSVField}</div>
                         <input type="text" className="form-control form-control-sm" readOnly
                                value={map?.CustomerValue ?? ''}/>
                     </InputGroup>
                 </FormColumn>
                 <FormColumn label="Map To" width={8}>
-                    <InputGroup bsSize="sm">
-                        <div className="input-group-text">
+                    <InputGroup size="sm">
+                        <InputGroup.Text>
                             Sage Item Code
-                        </div>
+                        </InputGroup.Text>
                         <input type="text" className="form-control form-control-sm"
                                onChange={itemChangeHandler}
                                value={map.MappedValue ?? ''}/>
                     </InputGroup>
                 </FormColumn>
                 <FormColumn label="Conversion">
-                    <InputGroup bsSize="sm">
-                        <div className="input-group-text">Conversion Factor</div>
+                    <InputGroup size="sm">
+                        <InputGroup.Text>Conversion Factor</InputGroup.Text>
                         <input type="number" value={map.MappedOptions?.conversionFactor ?? ''} required
                                min={1} onChange={setConversionFactor} className="form-control form-control-sm"/>
-                        <div className="input-group-text">U/M</div>
+                        <InputGroup.Text>U/M</InputGroup.Text>
                         <input type="text" value={map.MappedOptions?.UOMOverride ?? ''}
                                onChange={setUOMOverride} className="form-control form-control-sm"/>
                     </InputGroup>
+                    <FormText>Conversion factor will divide the CSV Line Quantity to calculate the Sage Line Quantity.</FormText>
                 </FormColumn>
                 <FormColumn label="" width={8}>
                     <div className="row g-3 align-items-baseline">
                         <div className="col-auto">
                             <button type="submit" className="btn btn-sm btn-primary"
                                     disabled={!map.CustomerValue || !map.MappedValue}>
-                                Save
+                                Save Map
                             </button>
                         </div>
                         <div className="col">

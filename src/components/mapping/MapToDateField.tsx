@@ -5,12 +5,13 @@ import {selectCurrentMap, selectMapForField} from "../../ducks/mapping/mapping-s
 import {SPSValueMap} from "sps-integration-types";
 import {Editable} from "chums-types";
 import {CustomerMapField} from "../../appTypes";
-import {FormColumn, InputGroup} from "chums-components";
+import {FormColumn} from "chums-components";
 import {mapFieldNames} from "./field-names";
 import {mappedDate} from "./utils";
 import {saveCustomerValueMapping} from "../../ducks/mapping/mapping-actions";
 import MappingTitle from "./MappingTitle";
 import MapChangedAlert from "./MapChangedAlert";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const defaultMap: SPSValueMap = {
     id: 0,
@@ -74,18 +75,18 @@ const MapToDateField = () => {
                            value={mapFieldNames[mapForField]}/>
                 </FormColumn>
                 <FormColumn label="Map To Field" width={8}>
-                    <InputGroup bsSize="sm">
+                    <InputGroup size="sm">
                         <input type="text" className="form-control form-control-sm" readOnly value={map.CSVField}/>
-                        <div className="input-group-text">EDI Value</div>
-                        <div className="input-group-text">{map.CustomerValue}</div>
+                        <InputGroup.Text>EDI Value</InputGroup.Text>
+                        <InputGroup.Text>{map.CustomerValue}</InputGroup.Text>
                     </InputGroup>
                 </FormColumn>
                 <FormColumn label="Options" width={8}>
-                    <InputGroup bsSize="sm">
-                        <div className="input-group-text">Add Days</div>
+                    <InputGroup size="sm">
+                        <InputGroup.Text>Add Days</InputGroup.Text>
                         <input type="number" className="form-control form-control-sm" value={days}
                                onChange={onChangeDays}/>
-                        <div className="input-group-text">{mappedDate(map.CustomerValue, days)}</div>
+                        <InputGroup.Text>{mappedDate(map.CustomerValue, days)}</InputGroup.Text>
                     </InputGroup>
                 </FormColumn>
                 <FormColumn label="" width={8}>

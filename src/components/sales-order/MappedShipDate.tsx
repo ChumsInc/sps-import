@@ -1,11 +1,12 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {selectCSVHeader, selectSalesOrder} from "../../ducks/csv-import/csv-import-selectors";
-import {FormColumn, InputGroup} from "chums-components";
+import {FormColumn} from "chums-components";
 import classNames from "classnames";
 import {selectMaps} from "../../ducks/mapping/mapping-selectors";
 import {setCurrentMapping} from "../../ducks/mapping/mapping-actions";
 import dayjs from "dayjs";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const MappedShipDate = () => {
     const dispatch = useAppDispatch();
@@ -34,10 +35,10 @@ const MappedShipDate = () => {
 
     return (
         <FormColumn label="Ship Date">
-            <InputGroup bsSize="sm">
-                <div className="input-group-text">
+            <InputGroup size="sm">
+                <InputGroup.Text>
                     <span className="bi-calendar-date"/>
-                </div>
+                </InputGroup.Text>
                 <input type="text" className="form-control form-control-sm" readOnly
                        value={shipDate}/>
                 <button className={buttonClassName} onClick={clickHandler}>Mapping</button>
