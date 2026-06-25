@@ -1,6 +1,5 @@
-import React from 'react';
 import {Alert} from "react-bootstrap";
-import {SPSCustomerShipToAddress} from "sps-integration-types";
+import type {SPSCustomerShipToAddress} from "chums-types/edi";
 
 const ShipToAddress = ({address}:{address?: SPSCustomerShipToAddress|null}) => {
     if (!address) {

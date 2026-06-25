@@ -1,5 +1,4 @@
-import React from 'react';
-import {SPSCustomerMapField} from "sps-integration-types";
+import type {SPSCustomerMapField} from "chums-types/edi";
 
 const CustomerFieldsList = ({fields}: {
     fields: SPSCustomerMapField[];

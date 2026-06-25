@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import {useRef} from 'react';
 import CSVDropTarget from "./CSVDropTarget";
 import ImportTestResult from "./sales-order/ImportTestResult";
 

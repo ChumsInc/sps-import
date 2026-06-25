@@ -1,13 +1,14 @@
-import React, {ChangeEvent, useEffect, useId, useRef, useState} from 'react';
+import {type ChangeEvent, useEffect, useId, useRef, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../app/configureStore";
 import {selectCustomerId, selectCustomerLookup} from "../ducks/mapping/mapping-selectors";
 import {customerNo} from "../ducks/customers/customer-utils";
-import {SPSCustomerLookup} from "../appTypes";
+import type {SPSCustomerLookup} from "../appTypes";
 import {fetchSearchCustomer} from "../api/mapping-api";
-import {FormColumn} from "chums-components";
 import classNames from "classnames";
 import {setMappedCustomer} from "../ducks/mapping/mapping-actions";
 import ExistingCustomerAlert from "../ducks/customers/ExistingCustomerAlert";
+import {Col, Form, FormControl, Row} from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const CustomerLookup = () => {
     const dispatch = useAppDispatch();
@@ -60,7 +61,7 @@ const CustomerLookup = () => {
 
         if (/^(0[1-9])-(\S+)$/.test(value)) {
             const [ARDivisionNo, CustomerNo] = value.trim().split('-');
-            return dispatch(setMappedCustomer({Company: 'chums', ARDivisionNo, CustomerNo, CustomerName: ''}));
+            return dispatch(setMappedCustomer({ARDivisionNo, CustomerNo, CustomerName: ''}));
         }
     }
 
@@ -73,22 +74,26 @@ const CustomerLookup = () => {
     })
     return (
         <div>
-            <FormColumn width={9} label="Customer Number">
-                <div className="input-group input-group-sm">
-                    <div className="input-group-text">
-                        {customer?.CustomerName ?? <span className="bi-question-circle-fill"/>}
-                    </div>
-                    <input type="text" value={value} onChange={changeHandler} list={id} required
-                           className="form-control form-control-sm"
-                           placeholder="##-XX####"/>
-                    <button className={buttonClassName} disabled={!value} onClick={applyCustomerHandler}>Apply</button>
-                </div>
-                <datalist id={id}>
-                    {customers.map(c => (
-                        <option key={customerNo(c) ?? ''} value={customerNo(c) ?? ''}>{c.CustomerName}</option>
-                    ))}
-                </datalist>
-            </FormColumn>
+            <Form.Group as={Row} width={9} label="Customer Number">
+                <Form.Label column sm={3}>Customer Number</Form.Label>
+                <Col>
+                    <InputGroup size="sm">
+                        <InputGroup.Text>
+                            {customer?.CustomerName ?? <span className="bi-question-circle-fill"/>}
+                        </InputGroup.Text>
+                        <FormControl type="text" value={value} onChange={changeHandler} list={id} required
+                                     size="sm"
+                                     placeholder="##-XX####"/>
+                        <button className={buttonClassName} disabled={!value} onClick={applyCustomerHandler}>Apply
+                        </button>
+                    </InputGroup>
+                    <datalist id={id}>
+                        {customers.map(c => (
+                            <option key={customerNo(c) ?? ''} value={customerNo(c) ?? ''}>{c.CustomerName}</option>
+                        ))}
+                    </datalist>
+                </Col>
+            </Form.Group>
             {!!customer && !customerId && <ExistingCustomerAlert newCustomer={customer}/>}
         </div>
     );

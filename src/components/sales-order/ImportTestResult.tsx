@@ -1,4 +1,3 @@
-import React from 'react';
 import BillToAddress from "../BillToAddress";
 import ShipToAddress from "../ShipToAddress";
 import ImportItemList from "./ImportItemList";

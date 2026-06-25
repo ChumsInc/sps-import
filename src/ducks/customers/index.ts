@@ -1,7 +1,7 @@
-import {SPSCustomerMap, SPSValueMap} from "sps-integration-types";
+import type {SPSCustomerMap, SPSValueMap} from "chums-types/edi";
 import {createReducer} from "@reduxjs/toolkit";
 import {customerSorter} from "./customer-utils";
-import {SortProps} from "chums-types";
+import type {SortProps} from "chums-types";
 import {
     loadCustomerMapping,
     loadCustomers, removeCustomerItemMapping,
@@ -14,7 +14,7 @@ import {
     setRowsPerPage,
     setSort
 } from "./customer-actions";
-import {CustomerMapType} from "../../appTypes";
+import type {CustomerMapType} from "../../appTypes";
 import {parseFile} from "../csv-import/csv-import-actions";
 import {valueMapSorter} from "../mapping/utils";
 

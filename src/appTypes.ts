@@ -1,8 +1,8 @@
-import {OrderMapField, SPSCustomerKey, SPSCustomerMapField, SPSOrderLine} from "sps-integration-types";
+import type {SPSOrderMapField, SPSCustomerKey, SPSCustomerMapField, SPSOrderLine} from "chums-types/edi";
+import type {ReactNode} from "react";
 
 
 export interface CustomerSearchResult {
-    Company: string;
     ARDivisionNo: string;
     CustomerNo: string;
     CustomerName: string;
@@ -20,7 +20,6 @@ export interface ExistingPurchaseOrderResponse {
 }
 
 export interface SPSCustomerLookup extends SPSCustomerKey {
-    Company: string;
     ARDivisionNo: string;
     CustomerNo: string;
     CustomerName: string;
@@ -43,12 +42,12 @@ export interface CustomerMapField extends SPSCustomerMapField {
 export interface CurrentMappingArgs {
     line?: SPSOrderLine;
     customerValue?: string;
-    mapField: OrderMapField | 'Customer' | 'Import';
+    mapField: SPSOrderMapField | 'Customer' | 'Import';
     mapToValue?: string;
 }
 
 export type MapFieldNames = {
-    [key in OrderMapField]: string;
+    [key in SPSOrderMapField]: string;
 }
 
 export interface SalesOrderImportResponse {
@@ -57,4 +56,15 @@ export interface SalesOrderImportResponse {
     response?: object;
     error?: string;
     exception?: string;
+}
+
+export interface Tab {
+    id: string,
+    title: string|ReactNode,
+
+    /** Bootstrap icon className */
+    icon?: string,
+
+    canClose?: boolean,
+    disabled?: boolean,
 }

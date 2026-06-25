@@ -1,4 +1,3 @@
-import React from "react";
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {selectCurrentMappingTool} from "../../ducks/mapping/mapping-selectors";
 import {closeSelectedMapping} from "../../ducks/mapping/mapping-actions";

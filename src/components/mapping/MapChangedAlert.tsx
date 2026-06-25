@@ -1,7 +1,7 @@
-import React from "react";
 import {Alert} from "react-bootstrap";
+import type {ReactNode} from "react";
 
-const MapChangedAlert = ({changed, children}:{changed?:boolean, children?:React.ReactNode}) => {
+const MapChangedAlert = ({changed, children}:{changed?:boolean, children?:ReactNode}) => {
     if (!changed) {
         return null;
     }

@@ -1,7 +1,6 @@
-import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {selectCSVHeader, selectSalesOrder} from "../../ducks/csv-import/csv-import-selectors";
-import {FormColumn} from "chums-components";
+import FormColumn from "@/components/FormColumn.tsx";;
 import {customerNo} from "../../ducks/customers/customer-utils";
 import classNames from "classnames";
 import {setCurrentMapping} from "../../ducks/mapping/mapping-actions";

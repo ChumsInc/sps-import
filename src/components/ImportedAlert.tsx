@@ -1,9 +1,8 @@
-import React from 'react'
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
 import {selectImportResult} from "@/ducks/csv-import/csv-import-selectors";
 import {Alert} from "react-bootstrap";
 import {setCurrentMapping} from "@/ducks/mapping/mapping-actions";
-import {Variant} from "react-bootstrap/types";
+import type {Variant} from "react-bootstrap/types";
 
 const ImportedAlert = () => {
     const dispatch = useAppDispatch();

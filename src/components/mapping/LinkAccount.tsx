@@ -1,4 +1,3 @@
-import React from 'react';
 import CustomerLookup from "../CustomerLookup";
 import MapToCustomer from "./MapToCustomer";
 import MappingTitle from "./MappingTitle";

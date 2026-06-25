@@ -1,9 +1,9 @@
 import {fetchExistingPurchaseOrder, postFile, postImportToSage} from "../../api/csv-import-api";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {selectExistingPOLoading, selectImporting, selectProcessing} from "./csv-import-selectors";
-import {SPSConversionResponse, SPSSalesOrder} from "sps-integration-types";
-import {RootState} from "@/app/configureStore";
-import {ExistingPurchaseOrder, SalesOrderImportResponse} from "../../appTypes";
+import type {SPSConversionResponse, SPSSalesOrder} from "chums-types/edi";
+import type {RootState} from "@/app/configureStore";
+import type {ExistingPurchaseOrder, SalesOrderImportResponse} from "../../appTypes";
 
 
 export const parseFile = createAsyncThunk<SPSConversionResponse, File>(
@@ -12,7 +12,7 @@ export const parseFile = createAsyncThunk<SPSConversionResponse, File>(
         return await postFile(arg);
     },
     {
-        condition: (arg, {getState}) => {
+        condition: (_, {getState}) => {
             const state = getState() as RootState;
             return !selectProcessing(state);
         }

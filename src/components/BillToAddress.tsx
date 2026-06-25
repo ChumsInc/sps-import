@@ -1,6 +1,5 @@
-import React from 'react';
 import {Alert} from "react-bootstrap";
-import {SPSCustomerBillingAddress} from 'sps-integration-types'
+import type {SPSCustomerBillingAddress} from 'chums-types/edi'
 
 const BillToAddress = ({address}: { address?: SPSCustomerBillingAddress|null }) => {
     if (!address) {

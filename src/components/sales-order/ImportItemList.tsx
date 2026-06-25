@@ -1,4 +1,3 @@
-import React from 'react';
 import numeral from 'numeral';
 import {Alert} from "react-bootstrap";
 import {useAppSelector} from "../../app/configureStore";

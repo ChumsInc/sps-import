@@ -1,4 +1,4 @@
-import {MapFieldNames} from "../../appTypes";
+import type {MapFieldNames} from "../../appTypes";
 
 export const mapFieldNames: MapFieldNames = {
     'ShipExpireDate': 'Ship Date',

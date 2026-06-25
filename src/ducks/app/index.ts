@@ -1,6 +1,6 @@
-import {Tab} from "chums-components";
 import {createAction, createReducer} from "@reduxjs/toolkit";
-import {RootState} from "../../app/configureStore";
+import type {RootState} from "../../app/configureStore";
+import type {Tab} from "../../appTypes.ts";
 
 export interface AppState {
     tabs: Tab[]

@@ -1,6 +1,6 @@
-import {RootState} from "../../app/configureStore";
+import type {RootState} from "../../app/configureStore";
 import {createSelector} from "@reduxjs/toolkit";
-import {SPSValueMap} from "sps-integration-types";
+import type {SPSValueMap} from "chums-types/edi";
 
 
 export const selectCustomerId = (state:RootState) => state.mapping.customerId;

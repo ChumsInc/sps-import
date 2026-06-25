@@ -1,5 +1,5 @@
-import {SPSOrderLine, SPSSalesOrder, SPSValueMap} from "sps-integration-types";
-import {ExistingPurchaseOrder, SalesOrderImportResponse} from "../../appTypes";
+import type {SPSOrderLine, SPSSalesOrder, SPSValueMap} from "chums-types/edi";
+import type {ExistingPurchaseOrder, SalesOrderImportResponse} from "../../appTypes";
 import {createReducer} from "@reduxjs/toolkit";
 import {csvLineSorter, mappingSorter} from "./utils";
 import {importToSage, loadExistingPurchaseOrder, parseFile} from "./csv-import-actions";

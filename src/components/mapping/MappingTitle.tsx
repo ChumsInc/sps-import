@@ -1,4 +1,3 @@
-import React from "react";
 import CloseMappingButton from "./CloseMappingButton";
 
 const MappingTitle = ({title}: { title: string }) => {

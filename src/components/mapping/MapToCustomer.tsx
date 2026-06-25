@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useId, useState} from 'react';
+import {Fragment, useEffect, useId, useState} from 'react';
 import MapList from "../MapList";
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {
@@ -8,11 +8,10 @@ import {
     selectCustomerOptions,
     selectMappingData
 } from "../../ducks/mapping/mapping-selectors";
-import {CustomerMap, CustomerMapField} from "../../appTypes";
-import {FormColumn} from "chums-components";
+import type {CustomerMap, CustomerMapField} from "../../appTypes";
 import {saveCustomerLookupMapping, setCustomerMap, toggleZeroCommissions} from "../../ducks/mapping/mapping-actions";
 import MapChangedAlert from "./MapChangedAlert";
-import {FormCheck} from "react-bootstrap";
+import {Col, Form, FormCheck, Row} from "react-bootstrap";
 
 const MapToCustomer = () => {
     const dispatch = useAppDispatch();
@@ -66,14 +65,20 @@ const MapToCustomer = () => {
                     ))}
                 </tbody>
             </table>
-            <FormColumn width={9} label="Import with 0 Commission">
-                <FormCheck label={customerOptions.zeroCommissions ? 'Yes' : 'No'}
-                           id={idZeroCommissions}
-                           onChange={(ev) => dispatch(toggleZeroCommissions(ev.target.checked))}
-                           type="checkbox" inline={true}
-                           checked={customerOptions.zeroCommissions ?? false}/>
-            </FormColumn>
-            <FormColumn width={9} label="">
+            <Form.Group as={Row}>
+                <Form.Label column sm={3}>
+                    Import with 0 Commission
+                </Form.Label>
+                <Col>
+                    <FormCheck label={customerOptions.zeroCommissions ? 'Yes' : 'No'}
+                               id={idZeroCommissions}
+                               onChange={(ev) => dispatch(toggleZeroCommissions(ev.target.checked))}
+                               type="checkbox" inline={true}
+                               checked={customerOptions.zeroCommissions ?? false}/>
+                </Col>
+            </Form.Group>
+            <Form.Group>
+                <Form.Label column sm={3}></Form.Label>
                 <div className="row g-3 align-items-baseline">
                     <div className="col-auto">
                         <button type="button" className="btn btn-sm btn-primary mr-3"
@@ -93,7 +98,7 @@ const MapToCustomer = () => {
                         <MapChangedAlert changed={customerLookupChanged}/>
                     </div>
                 </div>
-            </FormColumn>
+            </Form.Group>
 
             {(Object.keys(customerLookupMapping).length === 0 || showMappingOptions) && (
                 <Fragment>

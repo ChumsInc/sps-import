@@ -1,10 +1,9 @@
-import React, {Fragment, useState} from 'react';
+import {Fragment, useState} from 'react';
 import AccountMapItem from "./AccountMapItem";
 import {useAppSelector} from "@/app/configureStore";
 import {selectMappingData} from "@/ducks/mapping/mapping-selectors";
-import {FormCheck} from "react-bootstrap";
-import {CustomerMapField} from "../appTypes";
-import {FormColumn} from "chums-components";
+import {Col, Form, FormCheck, Row} from "react-bootstrap";
+import type {CustomerMapField} from "../appTypes";
 
 export interface MapListProps {
     csvFields: string[];
@@ -32,12 +31,15 @@ const MapList = ({csvFields, type = 'radio', defaultFilter, onChange}: MapListPr
     const label = hasFilter ? 'Show Only Filtered Values' : 'Show Only Filled Values';
     return (
         <Fragment>
-            <FormColumn width={9} label="Show:">
-                <FormCheck label={label} inline type="radio" checked={!showAllLines}
-                           onChange={() => setShowAllLines(false)}/>
-                <FormCheck label="All Lines" inline type="radio" checked={showAllLines}
-                           onChange={() => setShowAllLines(true)}/>
-            </FormColumn>
+            <Form.Group as={Row} width={9}>
+                <Form.Label column sm={3}>Show</Form.Label>
+                <Col>
+                    <FormCheck label={label} inline type="radio" checked={!showAllLines}
+                               onChange={() => setShowAllLines(false)}/>
+                    <FormCheck label="All Lines" inline type="radio" checked={showAllLines}
+                               onChange={() => setShowAllLines(true)}/>
+                </Col>
+            </Form.Group>
             <div className="map-list">
                 {values.map(map => (
                     <AccountMapItem key={map.field} type={type} map={map}

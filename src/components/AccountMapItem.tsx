@@ -1,7 +1,7 @@
-import React, {ChangeEvent, useId} from 'react';
+import {type ChangeEvent, useId} from 'react';
 import classNames from 'classnames';
 import {FormCheck} from "react-bootstrap";
-import {SPSCustomerMapField} from "sps-integration-types";
+import type {SPSCustomerMapField} from "chums-types/edi";
 
 export interface AccountMapItemProps {
     map: SPSCustomerMapField;

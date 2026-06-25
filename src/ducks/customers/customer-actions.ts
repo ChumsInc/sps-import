@@ -1,10 +1,10 @@
 import {createAction, createAsyncThunk} from "@reduxjs/toolkit";
-import {SortProps} from "chums-types";
-import {SPSCustomerMap, SPSValueMap} from "sps-integration-types";
+import type {SortProps} from "chums-types";
+import type {SPSCustomerMap, SPSValueMap} from "chums-types/edi";
 import {fetchCustomerMapping, fetchCustomers} from "../../api/customers-api";
-import {RootState} from "../../app/configureStore";
+import type {RootState} from "../../app/configureStore";
 import {selectCurrentCustomer, selectCustomerLoading, selectCustomersLoading} from "./customer-selectors";
-import {CustomerMapType} from "../../appTypes";
+import type {CustomerMapType} from "../../appTypes";
 import {deleteCustomerItemMapping} from "@/api/mapping-api";
 
 export const setSort = createAction<SortProps<SPSCustomerMap>>('customers/setSort');
@@ -17,7 +17,7 @@ export const loadCustomers = createAsyncThunk<SPSCustomerMap[]>(
         return await fetchCustomers();
     },
     {
-        condition: (arg, {getState}) => {
+        condition: (_, {getState}) => {
             const state = getState() as RootState;
             return !selectCustomersLoading(state);
         }
@@ -38,7 +38,7 @@ export const loadCustomerMapping = createAsyncThunk<SPSValueMap[], SPSCustomerMa
         return await fetchCustomerMapping(arg);
     },
     {
-        condition: (arg, {getState}) => {
+        condition: (_, {getState}) => {
             const state = getState() as RootState;
             return !selectCustomerLoading(state);
         }

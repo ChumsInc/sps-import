@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {loadVersion, selectVersion} from "./index";
 import {Alert} from "react-bootstrap";
@@ -12,7 +12,7 @@ const VersionInfo = () => {
     }, []);
 
     return (
-        <Alert variant="secondary">Version: {version}</Alert>
+        <Alert variant="secondary" className="mt-3">Version: {version}</Alert>
     )
 }
 

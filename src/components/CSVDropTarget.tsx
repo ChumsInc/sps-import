@@ -1,4 +1,4 @@
-import React, {DragEvent, useRef, useState} from 'react';
+import {type DragEvent, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {parseFile} from '@/ducks/csv-import/csv-import-actions';
 import classNames from 'classnames';

@@ -1,8 +1,8 @@
-import React, {useEffect, useId} from 'react';
+import {useEffect, useId, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "@/app/configureStore";
-import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
-import {SPSValueMap} from "sps-integration-types";
-import {SortProps} from "chums-types";
+import {SortableTable,type  SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
+import type {SPSValueMap} from "chums-types/edi";
+import type {SortProps} from "chums-types";
 import {
     selectCurrentCustomer,
     selectCustomerMappingFilter,
@@ -74,9 +74,9 @@ const CustomerValueList = () => {
     const idItemCode = useId();
     const idShipTo = useId();
     const idOther = useId();
-    const [value, setValue] = React.useState<SPSValueMap | null>(null);
+    const [value, setValue] = useState<SPSValueMap | null>(null);
 
-    const sortChangeHandler = (sort: SortProps) => dispatch(setCustomerSort(sort));
+    const sortChangeHandler = (sort: SortProps<SPSValueMap>) => dispatch(setCustomerSort(sort));
 
     const rppChangeHandler = (rpp: number) => {
         dispatch(setCustomerRowsPerPage(rpp));

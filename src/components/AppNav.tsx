@@ -1,5 +1,4 @@
-import React from 'react';
-import {Nav, NavProps} from "react-bootstrap";
+import {Nav, type NavProps} from "react-bootstrap";
 
 export default function AppNav({activeKey, onSelect, ...props}:NavProps) {
     return (

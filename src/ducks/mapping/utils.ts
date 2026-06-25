@@ -1,5 +1,5 @@
-import {SPSCustomerMapField, SPSValueMap} from "sps-integration-types";
-import {CustomerMap} from "../../appTypes";
+import type {SPSCustomerMapField, SPSValueMap} from "chums-types/edi";
+import type {CustomerMap} from "../../appTypes";
 
 export function parseLookupMap(fields:SPSCustomerMapField[]):CustomerMap {
     const map:CustomerMap = {};

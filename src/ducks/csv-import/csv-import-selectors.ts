@@ -1,4 +1,4 @@
-import {RootState} from "../../app/configureStore";
+import type {RootState} from "../../app/configureStore";
 
 export const selectProcessing = (state:RootState) => state.csvImport.processing;
 export const selectSalesOrder = (state:RootState) => state.csvImport.salesOrder;

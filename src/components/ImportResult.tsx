@@ -1,4 +1,3 @@
-import React from 'react';
 import {Alert} from "react-bootstrap";
 import {useAppSelector} from "@/app/configureStore";
 import {selectImportResult} from "@/ducks/csv-import/csv-import-selectors";

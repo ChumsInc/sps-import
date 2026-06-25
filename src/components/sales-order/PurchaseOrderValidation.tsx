@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {selectExistingPO, selectExistingPOLoading, selectSalesOrder} from "../../ducks/csv-import/csv-import-selectors";
 import {loadExistingPurchaseOrder} from "../../ducks/csv-import/csv-import-actions";
-import {FormColumn, Spinner} from "chums-components";
+import FormColumn from "@/components/FormColumn.tsx";
+import {Spinner} from "react-bootstrap";
+
 
 const PurchaseOrderValidation = () => {
     const dispatch = useAppDispatch();
@@ -19,7 +21,7 @@ const PurchaseOrderValidation = () => {
     }
 
     return (
-        <FormColumn width={8} label="Purchse Order #">
+        <FormColumn width={9} label="Purchse Order #">
             <div className="input-group input-group-sm">
                 <div className="input-group-text">
                     {!salesOrder.CustomerNo && <span className="bi-question-circle-fill"/>}
@@ -29,7 +31,7 @@ const PurchaseOrderValidation = () => {
                 <input type="text" readOnly value={salesOrder?.CustomerPONo} className="form-control form-control-sm"/>
                 {loading && (
                     <div className="input-group-text">
-                        <Spinner color="warning" bsSize="sm" type="border"/>
+                        <Spinner color="warning" size="sm" animation="border" role="status" />
                     </div>
                 )}
             </div>

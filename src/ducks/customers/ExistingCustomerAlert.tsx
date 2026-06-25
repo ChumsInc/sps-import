@@ -1,5 +1,4 @@
-import React from 'react';
-import {SPSCustomerKey} from "sps-integration-types";
+import type {SPSCustomerKey} from "chums-types/edi";
 import {useAppSelector} from "@/app/configureStore";
 import {selectCustomerList} from "./customer-selectors";
 import {isSameCustomer} from "./customer-utils";

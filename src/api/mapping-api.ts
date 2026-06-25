@@ -1,6 +1,6 @@
 import {fetchJSON} from "@chumsinc/ui-utils";
-import {CustomerLookupResponse, CustomerMap, SPSCustomerLookup} from "../appTypes";
-import {SPSCustomerMap, SPSCustomerOptions, SPSValueMap, SPSCustomerKey} from "sps-integration-types";
+import type {CustomerLookupResponse, CustomerMap, SPSCustomerLookup} from "../appTypes";
+import type {SPSCustomerMap, SPSCustomerOptions, SPSValueMap, SPSCustomerKey} from "chums-types/edi";
 
 export async function fetchSearchCustomer(value:string, signal: AbortSignal|null):Promise<SPSCustomerLookup[]> {
     try {

@@ -1,4 +1,3 @@
-import React from 'react';
 import LinkAccount from "./LinkAccount";
 import MapToDateField from "./MapToDateField";
 import MapToValue from "./MapToValue";

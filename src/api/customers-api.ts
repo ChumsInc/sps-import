@@ -1,4 +1,4 @@
-import {SPSCustomerMap, SPSValueMap, SPSCustomerKey} from "sps-integration-types";
+import type {SPSCustomerMap, SPSValueMap, SPSCustomerKey} from "chums-types/edi";
 import {fetchJSON} from "@chumsinc/ui-utils";
 
 
@@ -19,7 +19,7 @@ export async function fetchCustomers():Promise<SPSCustomerMap[]>{
 
 export async function fetchCustomerMapping(customer:SPSCustomerKey):Promise<SPSValueMap[]> {
     try {
-        const url = `/api/partners/sps/mapping/${encodeURIComponent(customer.Company)}/${encodeURIComponent(customer.ARDivisionNo)}-${encodeURIComponent(customer.CustomerNo)}`;
+        const url = `/api/partners/sps/mapping/chums/${encodeURIComponent(customer.ARDivisionNo)}-${encodeURIComponent(customer.CustomerNo)}`;
         const response = await fetchJSON<{mapping: SPSValueMap[]}>(url, {cache: 'no-cache'})
         return response?.mapping ?? [];
     } catch(err:unknown) {

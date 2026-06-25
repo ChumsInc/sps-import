@@ -1,5 +1,5 @@
-import {SortProps} from "chums-types";
-import {SPSCustomerMap, SPSValueMap, SPSCustomerKey} from "sps-integration-types";
+import type {SortProps} from "chums-types";
+import type {SPSCustomerMap, SPSValueMap, SPSCustomerKey} from "chums-types/edi";
 
 export const customerNo = (c: SPSCustomerKey | null) => {
     if (!c || !c.ARDivisionNo || !c.CustomerNo) {
@@ -9,8 +9,7 @@ export const customerNo = (c: SPSCustomerKey | null) => {
 }
 
 export function isSameCustomer(a: SPSCustomerKey, b: SPSCustomerKey) {
-    return a.Company === b.Company
-        && customerNo(a) === customerNo(b);
+    return customerNo(a) === customerNo(b);
 }
 
 export const customerSorter = (sort: SortProps<SPSCustomerMap>) =>

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
-import {SortableTable, SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
-import {SPSCustomerMap} from "sps-integration-types";
-import {SortProps} from "chums-types";
+import {SortableTable, type SortableTableField, TablePagination} from "@chumsinc/sortable-tables";
+import type {SPSCustomerMap} from "chums-types/edi";
+import type {SortProps} from "chums-types";
 import {customerNo} from "./customer-utils";
 import CustomerFieldsList from "./CustomerFieldsList";
 import {selectCurrentCustomer, selectPage, selectRowsPerPage, selectSort, selectSortedList} from "./customer-selectors";
@@ -27,7 +27,7 @@ const CustomerList = () => {
     const sort = useAppSelector(selectSort);
     const page = useAppSelector(selectPage);
     const rowsPerPage = useAppSelector(selectRowsPerPage);
-    const sortChangeHandler = (sort: SortProps) => dispatch(setSort(sort));
+    const sortChangeHandler = (sort: SortProps<SPSCustomerMap>) => dispatch(setSort(sort));
     const currentCustomer = useAppSelector(selectCurrentCustomer);
 
     const rowSelectHandler = (row: SPSCustomerMap) => {

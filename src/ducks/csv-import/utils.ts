@@ -1,4 +1,4 @@
-import {SPSValueMap, SPSOrderLine} from "sps-integration-types";
+import type {SPSValueMap, SPSOrderLine} from "chums-types/edi";
 
 
 export const mappingSorter = (a:SPSValueMap, b:SPSValueMap) => {

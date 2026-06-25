@@ -1,6 +1,6 @@
-import {CustomerMap, SPSCustomerLookup} from "../../appTypes";
-import {Editable} from "chums-types";
-import {OrderMapField, SPSCustomerMapField, SPSCustomerOptions, SPSOrderLine, SPSValueMap} from "sps-integration-types";
+import type {CustomerMap, SPSCustomerLookup} from "../../appTypes";
+import type {Editable} from "chums-types";
+import type {SPSOrderMapField, SPSCustomerMapField, SPSCustomerOptions, SPSOrderLine, SPSValueMap} from "chums-types/edi";
 import {createReducer} from "@reduxjs/toolkit";
 import {importToSage, parseFile} from "../csv-import/csv-import-actions";
 import {
@@ -27,8 +27,8 @@ export interface MappingState {
     savingCustomerMap: boolean;
     mappingData: SPSOrderLine | null;
     maps: SPSValueMap[];
-    selectedMappingTool: OrderMapField | 'Customer' | 'Import' | null;
-    mapForField: OrderMapField | null;
+    selectedMappingTool: SPSOrderMapField | 'Customer' | 'Import' | null;
+    mapForField: SPSOrderMapField | null;
     mapForValue: string;
     selectedMap: SPSValueMap & Editable | null;
     defaultCSVField: string;
@@ -80,7 +80,6 @@ const mappingReducer = createReducer(initialState, (builder) => {
             if (action.payload && action.payload.customer) {
                 const {
                     id,
-                    Company,
                     ARDivisionNo,
                     CustomerNo,
                     CustomerName,
@@ -88,7 +87,7 @@ const mappingReducer = createReducer(initialState, (builder) => {
                     options
                 } = action.payload.customer;
                 state.customerId = id;
-                state.customerLookup.customer = {Company, ARDivisionNo, CustomerNo, CustomerName};
+                state.customerLookup.customer = {ARDivisionNo, CustomerNo, CustomerName};
                 state.customerLookup.map = {};
                 state.customerLookup.changed = false;
                 state.customerLookup.loading = false;

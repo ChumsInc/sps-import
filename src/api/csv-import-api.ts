@@ -1,5 +1,5 @@
-import {SPSConversionResponse, SPSSalesOrder} from "sps-integration-types";
-import {ExistingPurchaseOrder, ExistingPurchaseOrderResponse, SalesOrderImportResponse} from "../appTypes";
+import type {SPSConversionResponse, SPSSalesOrder} from "chums-types/edi";
+import type {ExistingPurchaseOrder, ExistingPurchaseOrderResponse, SalesOrderImportResponse} from "../appTypes";
 import {fetchJSON} from "@chumsinc/ui-utils";
 import {isExistingPO} from "../typeUtils";
 

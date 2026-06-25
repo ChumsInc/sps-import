@@ -1,16 +1,16 @@
-import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {type ChangeEvent, type FormEvent, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
-import {SPSValueMap} from "sps-integration-types";
+import type {SPSValueMap} from "chums-types/edi";
 import {selectCurrentMap, selectMapForValue} from "../../ducks/mapping/mapping-selectors";
-import {Editable} from "chums-types";
-import {CustomerMapField} from "../../appTypes";
+import type {Editable} from "chums-types";
+import type {CustomerMapField} from "../../appTypes";
 import MappingTitle from "./MappingTitle";
-import {FormColumn} from "chums-components";
 import MapList from "../MapList";
 import MapChangedAlert from "./MapChangedAlert";
 import {saveCustomerValueMapping} from "../../ducks/mapping/mapping-actions";
 import InputGroup from "react-bootstrap/InputGroup";
 import {FormText} from "react-bootstrap";
+import FormColumn from "@/components/FormColumn.tsx";
 
 const defaultMap: SPSValueMap = {
     id: 0,

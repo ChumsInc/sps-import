@@ -1,16 +1,15 @@
-import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/configureStore";
 import {selectCSVHeader, selectSalesOrder} from "../../ducks/csv-import/csv-import-selectors";
 import {selectMaps} from "../../ducks/mapping/mapping-selectors";
-import {OrderMapField} from "sps-integration-types";
+import type {SPSOrderMapField} from "chums-types/edi";
 import classNames from "classnames";
-import {FormColumn} from "chums-components";
+import FormColumn from "@/components/FormColumn.tsx";;
 import {mapFieldNames} from "../mapping/field-names";
 import {setCurrentMapping} from "../../ducks/mapping/mapping-actions";
 import InputGroup from "react-bootstrap/InputGroup";
 
 const MappedOrderValue = ({mapField, required, icon}:{
-    mapField:OrderMapField,
+    mapField:SPSOrderMapField,
     required?: boolean,
     icon?: string;
 }) => {

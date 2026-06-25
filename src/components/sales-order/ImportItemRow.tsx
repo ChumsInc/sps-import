@@ -1,5 +1,4 @@
-import React from 'react';
-import {SPSSalesOrderDetailLine} from "sps-integration-types";
+import type {SPSSalesOrderDetailLine} from "chums-types/edi";
 import {useAppDispatch} from "../../app/configureStore";
 import classNames from "classnames";
 import numeral from "numeral";
@@ -21,7 +20,6 @@ const ImportItemRow = ({line, hasPackForStore}: {
         UDF_SHIP_CODE,
         map,
         errors,
-        csv
     } = line;
 
     const btnClassName = {
