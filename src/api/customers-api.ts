@@ -4,7 +4,7 @@ import {fetchJSON} from "@chumsinc/ui-utils";
 
 export async function fetchCustomers():Promise<SPSCustomerMap[]>{
     try {
-        const url = `/api/partners/sps/customers/`;
+        const url = `/api/partners/sps/customers.json`;
         const res = await fetchJSON<{customers: SPSCustomerMap[]}>(url, {cache: 'no-cache'});
         return res?.customers ?? [];
     } catch(err:unknown) {
@@ -19,7 +19,7 @@ export async function fetchCustomers():Promise<SPSCustomerMap[]>{
 
 export async function fetchCustomerMapping(customer:SPSCustomerKey):Promise<SPSValueMap[]> {
     try {
-        const url = `/api/partners/sps/mapping/chums/${encodeURIComponent(customer.ARDivisionNo)}-${encodeURIComponent(customer.CustomerNo)}`;
+        const url = `/api/partners/sps/mapping/${encodeURIComponent(customer.ARDivisionNo)}-${encodeURIComponent(customer.CustomerNo)}.json`;
         const response = await fetchJSON<{mapping: SPSValueMap[]}>(url, {cache: 'no-cache'})
         return response?.mapping ?? [];
     } catch(err:unknown) {

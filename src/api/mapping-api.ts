@@ -7,8 +7,9 @@ export async function fetchSearchCustomer(value:string, signal: AbortSignal|null
         if (!value || !value.trim()) {
             return [];
         }
-        const url = `/api/search/customer/chums/:value`
-            .replace(':value', encodeURIComponent(value));
+        const params = new URLSearchParams();
+        params.set('search', value);
+        const url = `/api/search/customer.json?${params.toString()}`;
         const res = await fetchJSON<CustomerLookupResponse>(url, {cache: 'no-cache', signal});
         return res?.result ?? [];
     } catch(err:unknown) {
@@ -23,7 +24,7 @@ export async function fetchSearchCustomer(value:string, signal: AbortSignal|null
 
 export async function postCustomerLookupMapping(customer: SPSCustomerKey, map: CustomerMap, options: SPSCustomerOptions): Promise<SPSCustomerMap[]> {
     try {
-        const url: string = '/api/partners/sps/customers/chums/:ARDivisionNo-:CustomerNo'
+        const url: string = '/api/partners/sps/customers/:ARDivisionNo-:CustomerNo.json'
             .replace(':ARDivisionNo', encodeURIComponent(customer.ARDivisionNo))
             .replace(':CustomerNo', encodeURIComponent(customer.CustomerNo));
         const LookupFields = Object.keys(map).map(key => ({field: key, value: map[key]}));
@@ -42,7 +43,7 @@ export async function postCustomerLookupMapping(customer: SPSCustomerKey, map: C
 
 export async function postCustomerMapping(customer:SPSCustomerKey, map:SPSValueMap):Promise<SPSValueMap[]> {
     try {
-        const url = '/api/partners/sps/mapping/chums/:ARDivisionNo-:CustomerNo'
+        const url = '/api/partners/sps/mapping/:ARDivisionNo-:CustomerNo.json'
             .replace(':ARDivisionNo', encodeURIComponent(customer.ARDivisionNo))
             .replace(':CustomerNo', encodeURIComponent(customer.CustomerNo));
         const body = JSON.stringify(map);
